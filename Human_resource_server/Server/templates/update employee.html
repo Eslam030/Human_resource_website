@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+        <link href="{% static 'css/navbar.css' %}" , rel = "stylesheet">
+        <link href="{% static 'css/input fields.css' %}" rel = "stylesheet" >
+        <link href="{% static 'css/search page.css' %}" rel = "stylesheet" >
+        <title id = "Title">update employee</title>
+    </head>
+    <body>
+        <a href="{% url 'Main' %}">
+            <img src = "{% static 'images/main page assets/H (1).png' %}" class = "logo">
+        </a>
+        <a href="{% url 'Main' %}">
+            <p class = "contlogo">Human Resources</p>
+        </a>
+        <div class = "nav">
+            <div class = "container" >
+                <div class = "selection" >
+                    <a href="{% url 'Register' %}" >
+                        <div class = "open" id = "register" >Register employee</div>
+                    </a>
+                </div>
+                <div class = "selection" >
+                    <div class = "open" id = "employee">employee</div>
+                    <div class = "list" >
+                        <a href="{% url 'Update' %}" id = "update">
+                            update employee
+                        </a>
+                        <a href="{% url 'Delete' %}" id = "delete">
+                            delete employee
+                        </a>
+                    </div>
+                </div>
+                <div class = "selection" id = vacation>
+                    <div class = "open">vacation</div>
+                    <div class = "list">
+                        <a href="{% url 'Vacation_Form' %}" id = "vacation-form">
+                            vacation form
+                        </a>
+                        <a href="{% url 'Vacation' %}" id = "vacations"> 
+                            vacations
+                        </a>
+                    </div>
+                </div>
+                <div class = "input-field" id = "input-field">
+                    <form autocomplete="off">
+                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
+                    </form>
+                    <img src = "{% static 'images/main page assets/search.png' %}" class = "image2">
+                    <div class = list , id = "search-list" style="display: block">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "top-page">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search icon" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            <p class = "search-text">Search</p>
+        </div>
+        <div class = "form_register search_bar">
+            <input type="text" class = "input-search" id = "search-for-employee" placeholder="Employee Name or ID">
+            <input type="button" value = "search" class = "search-btn" id = "search-btn">
+        </div>
+        <div class = "employee-list" id = "employee-list">
+            <div class = "employee last" >
+                <img src = "{% static 'images/search/user.png' %}" class = "user-icon">
+                <p >Name</p>
+                <p >ID</p>
+                <p >Salary</p>
+                <p >Vacations</p>
+                <p >Update</p>
+            </div>
+            <footer> 
+                <p class = "copyRight">
+                    Human Resources website © Copyright 2023 FCAI-CU. All rights reserved.
+                </p>
+            </footer>
+        </div>
+
+    </body>
+    <script src = "{% static 'js/data.js' %}"></script>
+    <script src = "{% static 'js/nav bar.js' %}"></script>
+    <script src = "{% static 'js/search-page.js' %}" ></script>
+    <script src = "{% static 'js/update employee.js' %}"></script>
+</html>

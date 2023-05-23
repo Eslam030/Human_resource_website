@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en" >
+    <head>
+        <link href="{% static 'css/projects.css' %}" , rel = "stylesheet" >
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+        <title>Web projects</title>
+    </head>
+    <body>
+        <div class = "header">
+            <p  class = "main_text">
+                projects
+            </p>
+        </div>
+        <div class = "container">
+            <a href="{% url 'Main' %}" class = "anchor-style card">
+                <p>
+                    Human Resources Website
+                </p>
+            </a>
+            <div class = "card">
+                <p>
+                    Student Affairs Website
+                </p>
+            </div>
+            <div class = "card ">
+                <p>
+                    Higher studies Website
+                </p>
+            </div>
+            <div class = "card">
+                <p>
+                    Laboratory tracking website
+                </p>
+            </div>
+            <footer> 
+                <p class = "copyRight">
+                    Human Resources website © Copyright 2023 FCAI-CU. All rights reserved.
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>

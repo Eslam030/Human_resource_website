@@ -1,0 +1,162 @@
+.image2{
+    width: 12px;
+    position: absolute ;
+    top : 35% ;
+    right: 0.7%;
+}
+.nav {
+    z-index: 99;
+    position: fixed;
+    background-color: #66717a;
+    width: 100%;
+    height: 5%;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    column-gap: 20px;
+}
+input{
+    position: relative;
+    left: 4%;
+    outline: none;
+    border: none;
+}
+.input-field {
+    display: flex;
+    width: 15%;
+    height: 18px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin-top: 10px;
+    margin-right: 0.3%;
+}
+a {
+    text-decoration: none;
+    width: 11%;
+}
+.logo {
+    width : 35px ;
+    height: 5%;
+    position: fixed;
+    left: 0.5%;
+    z-index: 100;
+}.contlogo{
+    position: fixed;
+    left: 3.5%;
+    top: 1.3% ;
+    margin: 0;
+    z-index: 100;
+    color : #ffffff ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 100;
+    letter-spacing: 4px;
+}
+
+/*for drop list*/
+.open {
+    width: 95%;
+    cursor: pointer;
+    background-color: #66717a;
+    color: white;
+    padding: 0.68em;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
+}
+.selection {
+    text-align: center;
+    margin-right: 0.8%;
+}
+.list {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 10px;
+    min-width: 160px;
+    z-index: 99;
+}
+.list a {
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    width: 85%;
+    display: block;
+}
+.list .form {
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    width: 85%;
+    display: block;
+}
+.input-in-form {
+    background-color: #ffffff;
+    cursor: pointer;
+    width: 100%;
+    text-align: start;
+    z-index: 99;
+}
+.input-in-form-right {
+    background-color: #ffffff;
+    cursor: pointer;
+    width: 100%;
+    text-align: end;
+    z-index: 99;
+    /*padding-right: 10%;*/
+}
+.list a:hover {
+    background-color: #66717a;
+    color : #ffffff ;
+    border-radius:10px ;
+    transition: 0.5s;
+}
+.list .form:hover{
+    background-color: #66717a;
+    color : #ffffff ;
+    border-radius:10px ;
+    transition: 0.5s;
+}
+.list .form:hover .input-in-form{
+    background-color: #66717a;
+    color : #ffffff ;
+    border-radius:10px ;
+    transition: 0.5s;
+}
+.list .form:hover .input-in-form-right{
+    background-color: #66717a;
+    color : #ffffff ;
+    border-radius:10px ;
+    transition: 0.5s;
+}
+.selection:hover .list {
+    display: block;
+    transition: 0.5s;
+}
+.selection:hover .open {
+    background-color: #ffffff;
+    color : #66717a ;
+    transition: 0.5s;
+}
+#search-list {
+    top : 40px ;
+}
+p {
+    margin: 0;
+}
+
+input:-webkit-autofill ,
+input:-webkit-autofill:focus , 
+input:-webkit-autofill:hover , 
+input:-webkit-autofill:active {
+    -webkit-box-shadow : 0 0 0 25px white inset !important ;
+}
+
+.search-nav {
+    padding: 0;
+    position: relative ;
+    height: 85%;
+}
+

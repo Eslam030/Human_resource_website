@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+        <link href="{% static 'css/main page.css' %}" rel = "stylesheet" >
+        <link href="{% static 'css/navbar.css' %}" rel = "stylesheet" >
+        <title>Home page</title>
+    </head>
+    <body>
+        <a href="{% url 'Main' %}">
+            <img src = "{% static 'images/main page assets/H (1).png' %}" class = "logo">
+        </a>
+        <a href="{% url 'Main' %}">
+            <p class = "contlogo">Human Resources</p>
+        </a>
+        <img src = "{% static 'images/main page assets/back.png' %}" class = "bg" id = "img1"> 
+        <img class = "image1" src = "{% static 'images/main page assets/background.jpg' %}" id = "img2" >
+        <p class = "font first position1">Welcome</p>
+        <p class = "font second position2">IN Human Resource</p>
+        <div class = "nav">
+            <div class = "container" >
+                <div class = "selection" >
+                    <a href="{% url 'Register' %}" >
+                        <div class = "open" id = "register" >Register employee</div>
+                    </a>
+                </div>
+                <div class = "selection" >
+                    <div class = "open" id = "employee">employee</div>
+                    <div class = "list" >
+                        <a href="{% url 'Update' %}" id = "update">
+                            update employee
+                        </a>
+                        <a href="{% url 'Delete' %}" id = "delete">
+                            delete employee
+                        </a>
+                    </div>
+                </div>
+                <div class = "selection" id = vacation>
+                    <div class = "open">vacation</div>
+                    <div class = "list">
+                        <a href="{% url 'Vacation_Form' %}" id = "vacation-form">
+                            vacation form
+                        </a>
+                        <a href="{% url 'Vacation' %}" id = "vacations"> 
+                            vacations
+                        </a>
+                    </div>
+                </div>
+                <div class = "input-field" id = "input-field">
+                    <form autocomplete="off">
+                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
+                    </form>
+                    <img src = "{% static 'images/main page assets/search.png' %}" class = "image2">
+                    <div class = list , id = "search-list" style="display: block">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src = "{% static 'js/data.js' %}"></script>
+    <script src = "{% static 'nav bar.js' %}"></script>
+</html>

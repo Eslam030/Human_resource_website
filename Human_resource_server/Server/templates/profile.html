@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+        <link href="styles/navbar.css" rel = "stylesheet" >
+        <link href="styles/input fields.css" rel = "stylesheet">
+        <link href="styles/search page.css" rel = "stylesheet">
+        <link href="styles/register employee.css" rel = "stylesheet" >
+        <link href="styles/profile.css" rel = "stylesheet" >
+        <title id = "Title">data</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <a href="main page.html">
+            <img src = "iamges/main page assets/H (1).png" class = "logo">
+        </a>
+        <a href="main page.html">
+            <p class = "contlogo">Human Resources</p>
+        </a>
+        <div class = "nav">
+            <div class = "container" >
+                <div class = "selection" >
+                    <a href="register employee.html" >
+                        <div class = "open" id = "register" >Register employee</div>
+                    </a>
+                </div>
+                <div class = "selection" >
+                    <div class = "open" id = "employee">employee</div>
+                    <div class = "list" >
+                        <a href="update employee.html" id = "update">
+                            update employee
+                        </a>
+                        <a href="delete employee.html" id = "delete">
+                            delete employee
+                        </a>
+                    </div>
+                </div>
+                <div class = "selection" id = vacation>
+                    <div class = "open">vacation</div>
+                    <div class = "list">
+                        <a href="vacation form.html" id = "vacation-form">
+                            vacation form
+                        </a>
+                        <a href="vacation.html" id = "vacations"> 
+                            vacations
+                        </a>
+                    </div>
+                </div>
+                <div class = "input-field" id = "input-field">
+                    <form autocomplete="off">
+                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
+                    </form>
+                    <img src = "iamges/main page assets/search.png" class = "image2">
+                    <div class = list , id = "search-list" style="display: block">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "top-page">
+            <p class = "search-text">profile</p>
+        </div>
+        <form class = "form_register profile" id = "Register-form" action="main page.html">
+            <div class = "collection">
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "name" placeholder="Name">
+                </div>
+                <div class = "input_field in-collection">
+                    <input type="email" class = "input" id = "email" placeholder="E-mail">
+                </div>
+            </div>
+            <div class = "collection">
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "id" placeholder="ID">
+                </div>
+                <div class = "input_field in-collection">
+                    <input type="tel" class = "input" id = "phone-number" placeholder="Phone-number">
+                </div>
+            </div>
+            <div class = "gen" id = "gender-control1">
+                <div class = "Radio" id = "radio">
+                    <p class = "name-of-selection">Gender</p>
+                    <div class = "Radio-selction">
+                        <div class = "btn">
+                            <div class = "checked">
+                            </div>
+                        </div>
+                        <input type = "radio" name = gender class = "Radio-btn" id = "male" >
+                        <P class = "select select1">Male</P>
+                    </div>
+                    <div class = "Radio-selction">
+                        <div class = "btn">
+                            <div class = "checked">
+                            </div>
+                        </div>
+                        <input type = "radio" name = gender class = "Radio-btn" id = "female" >
+                        <P class = "select select2">Female</P>
+                    </div>
+                </div>
+            </div>
+            <div class = "collection" >
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "available-vacations" placeholder="Available Vacations">
+                </div>
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "actual-vacations" placeholder="Actual Vacations">
+                </div>
+            </div>
+            <div class = "out-collection">
+                <div class = "selection " id = "control-selections">
+                    <div class = "open Marital-selection" id = "employee-in-marital">
+                        <p class = "Marital" id = "status">Marital</p>
+                    </div>
+                    <div class = "list" id = "Martial-list">
+                        <a>married</a>
+                        <a>divorced</a>
+                        <a>widowed</a>
+                        <a>never married</a>
+                    </div>
+                </div>
+            </div>
+            <div class = "input_field out-collection" id = "gender-control2">
+                <input type="text" class = "input" id = "gender" placeholder="Gender">
+            </div>
+            <div class = "input_field out-collection">
+                <input type="text" class = "input" id = "salary" placeholder="Salary">
+            </div>
+            <div class = "collection">
+                <p class = "DOB">DOB</p>
+                <div class = "input_field in-collection date">
+                    <input type = "date" class = "input" id = "date-of-birth">
+                </div>
+            </div>
+            <div class = "btns">
+                <input type = "button" class = "bgw delete-btn" id = "delete-finish" value = "Delete">
+                <input type = "button" class = "bgw edit-btn" id = "confirm-finish" value = "Confirm">
+                <input type = "button" class = "bgw edit-btn" id = "update-finist" value = "Update">
+            </div>
+        </form> 
+    </body>
+    <script src = "application/data.js"></script>
+    <script src = "application/nav bar.js"></script>
+    <script src = "application/confirm.js" ></script>
+    <script src = "application/profile.js" ></script>
+</html>

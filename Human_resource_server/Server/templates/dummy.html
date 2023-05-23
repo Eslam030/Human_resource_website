@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>test page</title>
+    </head>
+    <body>
+        <input type="button" value="test" id = 'test'>
+        <input type = "text" id = "name" placeholder="name">  
+        <input type = "text" id = "id" placeholder="id">  
+        <input type="button" id = "post" value="add">
+    </body>
+    {% csrf_token %}
+    {{ csrf_token }}
+    <script>
+        // Define a global JavaScript variable with the URL value
+        var ajaxUrl = "{% url 'data' %}";
+        let post = "{% url 'post' %}" ;
+      </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src = "{% static 'js/test.js' %}"></script>
+</html>

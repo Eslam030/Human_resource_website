@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    background-color: #cddee6;
+}
+.img {
+    position: absolute ;
+    top : 5%;
+    width: 85%;
+    height: 95%;
+}
+.main-text {
+    color : #026fbb ;
+    font-weight: 600;
+    position: absolute;
+    font-family: 'Raleway' ;
+    left: 27%;
+    top : 8% ;
+    font-size: 4vw;
+    z-index: 1;
+}
+.date {
+    cursor: pointer;
+}
+.DOB {
+    cursor: pointer;
+    color : #1772c1 ;
+    font-family: 'Raleway';
+    font-weight: 600;
+    position: relative;
+    top : 0.9vw ;
+    font-size: 1.9vw;
+    width: 10%;
+    left: 1%;
+}
+.Marital-selection {
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+.list a {
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    padding-right: 12px;
+    padding-top: 12px; 
+    padding-bottom: 12px;
+}
+.Marital{
+    color : #9b9b9b ;
+    font-size: 1.5vw;
+    cursor: pointer;
+    text-align: start;
+}
+.form_register .list a:hover {
+    background-color: #1772c1 ;
+}
+
+.edit-in-register {
+    width: 10vw;
+}
+.edit-in-register:hover {
+    background-color: #ffffff;
+}

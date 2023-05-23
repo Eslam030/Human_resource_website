@@ -1,0 +1,22 @@
+.profile {
+    left : 15vw ;
+    width: 60vw;
+}
+.btns {
+    display: flex;
+    width: 100%; 
+    justify-content: flex-end; 
+    column-gap: 1vw;
+}
+.bgw:hover {
+    background-color:#ffffff ;
+}
+.selection-disable {
+    cursor: text;
+}
+.disable {
+    display : none ;
+}
+.disable a {
+    display: none;
+}

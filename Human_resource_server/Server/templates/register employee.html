@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8" >
+        <link href="{% static 'css/navbar.css' %}"  rel = "stylesheet">
+        <link href="{% static 'css/input fields.css' %}" rel="stylesheet" >
+        <link href="{% static 'css/search page.css' %}" rel = "stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+        <link href="{% static 'css/register employee.css' %}" rel = "stylesheet" >
+        <!--<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+        />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script> -->
+        <title id = "Title">Register new employee</title>
+    </head>
+    <body>
+        <a href="{% url 'Main' %}">
+            <img src = "{% static 'images/main page assets/H (1).png' %}" class = "logo">
+        </a>
+        <a href="{% url 'Main' %}">
+            <p class = "contlogo">Human Resources</p>
+        </a>
+        <img src = "{% static 'images/regestration/back ground .jpg' %}" class = "img">
+        <div class = "nav">
+            <div class = "container" >
+                <div class = "selection" >
+                    <a href="{% url 'Register' %}" >
+                        <div class = "open" id = "register" >Register employee</div>
+                    </a>
+                </div>
+                <div class = "selection" >
+                    <div class = "open" id = "employee">employee</div>
+                    <div class = "list" >
+                        <a href="{% url 'Update' %}" id = "update">
+                            update employee
+                        </a>
+                        <a href="{% url 'Delete' %}" id = "delete">
+                            delete employee
+                        </a>
+                    </div>
+                </div>
+                <div class = "selection" id = vacation>
+                    <div class = "open">vacation</div>
+                    <div class = "list">
+                        <a href="{% url 'Vacation_Form' %}" id = "vacation-form">
+                            vacation form
+                        </a>
+                        <a href="{% url 'Vacation' %}" id = "vacations"> 
+                            vacations
+                        </a>
+                    </div>
+                </div>
+                <div class = "input-field" id = "input-field">
+                    <form autocomplete="off">
+                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
+                    </form>
+                    <img src = "{% static 'images/main page assets/search.png' %}" class = "image2">
+                    <div class = list , id = "search-list" style="display: block">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class = "main-text">Registration</p>
+        <form class = "form_register" id = "Register-form" action="main page.html">
+            <div class = "collection">
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "name" placeholder="Name">
+                </div>
+                <div class = "input_field in-collection">
+                    <input type="email" class = "input" id = "email" placeholder="E-mail">
+                </div>
+            </div>
+            <div class = "collection">
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "id" placeholder="ID">
+                </div>
+                <div class = "input_field in-collection">
+                    <input type="tel" class = "input" id = "phone-number" placeholder="Phone-number">
+                </div>
+            </div>
+            <div class = "gen">
+                <div class = "Radio" id = "radio">
+                    <p class = "name-of-selection">Gender</p>
+                    <div class = "Radio-selction">
+                        <div class = "btn">
+                            <div class = "checked">
+                            </div>
+                        </div>
+                        <input type = "radio" name = gender class = "Radio-btn" id = "male" >
+                        <P class = "select select1">Male</P>
+                    </div>
+                    <div class = "Radio-selction">
+                        <div class = "btn">
+                            <div class = "checked">
+                            </div>
+                        </div>
+                        <input type = "radio" name = gender class = "Radio-btn" id = "female" >
+                        <P class = "select select2">Female</P>
+                    </div>
+                </div>
+            </div>
+            <div class = "collection" >
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "available-vacations" placeholder="Available Vacations">
+                </div>
+                <div class = "input_field in-collection">
+                    <input type="text" class = "input" id = "actual-vacations" placeholder="Actual Vacations">
+                </div>
+            </div>
+            <div class = "out-collection">
+                <div class = "selection " id = "control-selections">
+                    <div class = "open Marital-selection " id = "employee">
+                        <p class = "Marital" id = "status">Marital</p>
+                    </div>
+                    <div class = "list" id = "Martial-list">
+                        <a>married</a>
+                        <a>divorced</a>
+                        <a>widowed</a>
+                        <a>never married</a>
+                    </div>
+                </div>
+            </div>
+            <div class = "input_field out-collection">
+                <input type="text" class = "input" id = "salary" placeholder="Salary">
+            </div>
+            <div class = "collection">
+                <p class = "DOB">DOB</p>
+                <div class = "input_field in-collection date">
+                    <input type = "date" class = "input" id = "date-of-birth">
+                </div>
+            </div>
+            <input type="button" class = "edit-btn edit-in-register" id = "finish" value = "Register">
+        </form> 
+        <script src = "{% static 'js/data.js' %}"></script>
+        <script src = "{% static 'js/nav bar.js' %}"></script>
+        <script src = "{% static 'js/confirm.js' %}" ></script>
+        <script src = "{% static 'js/register employee.js' %}"></script>
+    </body>
+</html>

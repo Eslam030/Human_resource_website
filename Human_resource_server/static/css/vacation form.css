@@ -1,0 +1,115 @@
+.vacation {
+    color : #10597b ;
+    font-family: "Raleway";
+    letter-spacing: 2vw;
+}
+.vacation-pos {
+    position: absolute ;
+    top : 9vw ;
+}
+.text-area {
+    text-indent: 15px;
+    resize: none;
+    border-color: transparent;
+    font-size: 2vw;
+    position: relative;
+    outline: none;
+    height: 90%;
+}
+
+.texts {
+    padding: 0;
+    position: absolute;
+    top : 18vw ;
+    left: 6vw ;
+    display: flex;
+    flex-direction: column; 
+    align-content: flex-start;
+    width: 70%;
+    height: 50%;
+    filter: drop-shadow(-10px 10px 30px rgb(74, 74, 74));
+}
+
+.text-vacation {
+    text-indent: 15px;
+    border-top : 1px solid rgb(174, 174, 174);
+    font-size: 1vw;
+    height: 5%;
+    left : 0;
+}
+
+.first {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.end-text {
+    border-bottom : 1px solid rgb(174, 174, 174);
+}
+.end {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.user-image{
+    width: 3vw;
+    position: relative;
+}
+.image-contain {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+.text-area::placeholder{
+    color :#10597b ;
+    font-weight: bold;
+    font-size: 2vw;
+}
+.text-vacation::placeholder {
+    color : #10597b;
+    font-weight: bold;
+    font-size: 1vw;
+}
+.number-contain {
+    background-color: #ffffff;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.number {
+    border : 1px solid black ;
+    border-radius: 10px;
+    width: 25%;
+    text-indent: 10px;
+    left: 0;
+}
+.accept-btn-contains {
+    background-color: #ffffff;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 2vw;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.accept-btn{
+    cursor: pointer;
+    left: 0;
+    background-color: #15632d ;
+    font-size: 1vw; 
+    color : #ffffff ;
+    border-radius: 10px ;
+    height: 2vw;
+    width: 25%;
+}
+.accept-btn:hover {
+    color : #15632d; 
+    background-color: #b1b0b0 ;
+    transition: 0.5s;
+}
+.accept-message {
+    color : #15632d; 
+    font-size: 2vw; 
+    font-weight: bold;
+}

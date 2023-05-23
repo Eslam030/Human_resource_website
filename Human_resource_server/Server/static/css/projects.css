@@ -1,0 +1,59 @@
+p {
+    font-family: 'Raleway' ;
+}
+.main_text {
+    color : white ;
+    margin:0px ;
+}
+.header {
+    font-size: 45px;
+    background-color: #16537e;
+    width: 250px;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: bold;
+    position: absolute;
+    left: 42% ;
+    top:10% ;
+    height: 65px;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 5%;
+    row-gap: 50px;
+    position: absolute;
+    top : 45% ;
+    left: 0;
+}
+.anchor-style {
+    text-decoration: none;
+    color : #ffffff ;
+}
+.card {
+    cursor: pointer;
+    color : #ffffff ;
+    background-color: #8fc2e8;
+    font-size: 45px;
+    width: 620px;
+    border-radius: 20px;
+    text-align: center;
+}
+.card:hover{
+    background-color: #1f90e5;
+}
+footer {
+    width: 100%;
+    background-color: #417690;
+    height: 6.2vh;
+    color: rgba(0,0,0,.7);
+    text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.copyRight {
+    color : white ;
+}
