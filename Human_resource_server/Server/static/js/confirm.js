@@ -1,9 +1,70 @@
+let _data = {
+    'name' : null  ,
+    'Email' : null ,
+    'ID' : null , 
+    "phoneNumber" : null ,
+    "gender" : null ,
+    "Marital" : null ,
+    "salary" : null ,
+    "AvailableVacations" : null ,
+    "ActualApproverVacations" : null 
+}
+function emptyData (){
+    for (x in _data) {
+        x = null ;
+    }
+}
+function checkAllData () {
+    for (item in _data) {
+        if (_data[item] == "" || _data[item] == null) {
+            return false ;
+        }
+    }
+    return true ;
+    // this will check that the data isn't null 
+
+}
 function confirm () {
+    emptyData() ;
+    $(document).ready(function(){
+        _data['name'] = $('#name').val() ;
+        _data['Email'] = $('#email').val() ;
+        _data['ID'] = $('#id').val();
+        _data['phoneNumber'] = $('#phone-number').val() ;
+        _data['AvailableVacations'] = $('#available-vacations').val() ;
+        _data['ActualApproverVacations'] = $('#actual-vacations').val() ;
+        _data['salary'] = $('#salary').val() ;
+        let gender = $('#radio').children() ;
+        if ( gender[1].children[1].checked) {
+            _data['gender'] = 'male' ;
+        }else if (gender[2].children[1].checked){
+            _data['gender'] = 'female' ;
+        }
+        if ($('#status').html() != 'Marital') {
+            _data['Marital'] = $('#status').html() ;
+        }
+    })
+    if (checkAllData()){
+        $(document).ready(function(){
+            // get data
+            $.ajax({
+                url : post ,
+                method : 'POST' ,
+                data : JSON.stringify(_data) , 
+                success : function(response){
+                    console.log(response) ;
+                } ,
+                error : function(xhr , errmsg , err){
+                    console.log('FUCKKKKKKKK!!!!')
+                }
+            })
+        })
+    }else {
+        console.log("FUCK PROGRAMMING") ;
+    }
     // check that all data is exist else a message will be appeared in the page
     // first what is the data 
-    // 
-    let allgood = true ;
-    let fields = ['name' , 'email' , 'id' , 'phone-number' ,
+/*     let fields = ['name' , 'email' , 'id' , 'phone-number' ,
     {'radio' : ['male' , 'female']} , 'available-vacations' ,
     'actual-vacations' , 'status' , 'salary' , 'date-of-birth']  ;
     let data = {} ;
@@ -62,7 +123,7 @@ function confirm () {
             window.localStorage['data'] = JSON.stringify(Jdata) ; 
             window.open('main page.html' , '_self') ;
         }
-    }
+    } */
 }
 function isDigit (word){
     return (word.charCodeAt(word.length - 1) >= 48 && word.charCodeAt(word.length - 1) <= 57) ;
