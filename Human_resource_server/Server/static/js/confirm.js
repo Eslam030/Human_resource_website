@@ -1,13 +1,14 @@
 let _data = {
     'name' : null  ,
-    'Email' : null ,
-    'ID' : null , 
-    "phoneNumber" : null ,
+    'email' : null ,
+    'id' : null , 
+    "phone-number" : null ,
     "gender" : null ,
-    "Marital" : null ,
+    "employee-marital" : null ,
     "salary" : null ,
-    "AvailableVacations" : null ,
-    "ActualApproverVacations" : null 
+    "available-vacations" : null ,
+    "actual-vacations" : null ,
+    'date-of-birth' : null
 }
 function emptyData (){
     for (x in _data) {
@@ -15,25 +16,25 @@ function emptyData (){
     }
 }
 function checkAllData () {
+    // this will check that the data isn't null 
     for (item in _data) {
         if (_data[item] == "" || _data[item] == null) {
             return false ;
         }
     }
     return true ;
-    // this will check that the data isn't null 
-
 }
 function confirm () {
     emptyData() ;
     $(document).ready(function(){
         _data['name'] = $('#name').val() ;
-        _data['Email'] = $('#email').val() ;
-        _data['ID'] = $('#id').val();
-        _data['phoneNumber'] = $('#phone-number').val() ;
-        _data['AvailableVacations'] = $('#available-vacations').val() ;
-        _data['ActualApproverVacations'] = $('#actual-vacations').val() ;
+        _data['email'] = $('#email').val() ;
+        _data['id'] = $('#id').val();
+        _data['phone-number'] = $('#phone-number').val() ;
+        _data['available-vacations'] = $('#available-vacations').val() ;
+        _data['actual-vacations'] = $('#actual-vacations').val() ;
         _data['salary'] = $('#salary').val() ;
+        _data['date-of-birth'] = $('#date-of-birth').val() ;
         let gender = $('#radio').children() ;
         if ( gender[1].children[1].checked) {
             _data['gender'] = 'male' ;
@@ -41,7 +42,7 @@ function confirm () {
             _data['gender'] = 'female' ;
         }
         if ($('#status').html() != 'Marital') {
-            _data['Marital'] = $('#status').html() ;
+            _data['employee-marital'] = $('#status').html() ;
         }
     })
     if (checkAllData()){
@@ -52,78 +53,34 @@ function confirm () {
                 method : 'POST' ,
                 data : JSON.stringify(_data) , 
                 success : function(response){
-                    console.log(response) ;
+                    // handle response 
+                    // and if it is all good return the user to tha main page
+                    if (response['message'] == "exist") {
+                        $('#gender-field').addClass('move')
+                        setTimeout(function (){
+                            $('#not-filled').addClass('exist-id') ;
+                        } , 200) ;
+                    }else {
+                        window.location.href = main;
+                    }
                 } ,
                 error : function(xhr , errmsg , err){
-                    console.log('FUCKKKKKKKK!!!!')
+                    console.log('Failed')
                 }
             })
         })
     }else {
+        for (item in _data) {
+            if (_data[item] == "" || _data[item] == null) {
+                if (item != 'gender') {
+                    $('#'+item).addClass('empty') ;
+                }else {
+                    $('#not-filled').addClass('empty-gender') ;
+                }
+            }
+        }
         console.log("FUCK PROGRAMMING") ;
     }
-    // check that all data is exist else a message will be appeared in the page
-    // first what is the data 
-/*     let fields = ['name' , 'email' , 'id' , 'phone-number' ,
-    {'radio' : ['male' , 'female']} , 'available-vacations' ,
-    'actual-vacations' , 'status' , 'salary' , 'date-of-birth']  ;
-    let data = {} ;
-    for (let i = 0 ; i < fields.length ; i++){
-        if (typeof fields[i] === 'string'){
-            let field = document.getElementById(fields[i]) ;
-            if (fields[i] === 'status'){
-                if (field.innerHTML === 'Marital'){
-                    allgood = false ;
-                }else {
-                    data['marital-status'] = field.innerHTML ;
-                }
-            }else {
-                if (field.value.length === 0){
-                    allgood = false ;
-                }else {
-                    data[fields[i]] = field.value ;
-                }
-            }
-        }else {
-            let btns = fields[i]['radio'] , checked = false ;
-            for (let i = 0 ; i < btns.length ; i++){
-                if (document.getElementById(btns[i]).checked){
-                    data['gender'] = btns[i] ;
-                    checked = true ;
-                    break ;
-                }
-            }
-            if (!checked){
-                allgood = false ;
-            }
-        }
-        
-    }
-    console.log(allgood) ;
-    if (allgood){
-        let title = document.getElementById('Title').innerHTML  ;
-        console.log(title) ;
-        if (title === "Register new employee"){
-            if (addData(data['name'] , data['id']))  {
-                if (!window.localStorage['data']){
-                    window.localStorage.setItem('data' , '{}') ;
-                }
-                let Jdata = JSON.parse (window.localStorage['data']) ;
-                Jdata[data['id']] = data ;
-                window.localStorage['data'] = JSON.stringify(Jdata) ; 
-                document.getElementById('Register-form').submit() ;
-            }
-        }else {
-            update_data(data['name'] , data['id']) ;
-            if (!window.localStorage['data']){
-                window.localStorage.setItem('data' , '{}') ;
-            }
-            let Jdata = JSON.parse (window.localStorage['data']) ;
-            Jdata[data['id']] = data ;
-            window.localStorage['data'] = JSON.stringify(Jdata) ; 
-            window.open('main page.html' , '_self') ;
-        }
-    } */
 }
 function isDigit (word){
     return (word.charCodeAt(word.length - 1) >= 48 && word.charCodeAt(word.length - 1) <= 57) ;
@@ -210,6 +167,9 @@ for (let i = 0 ; i < radio.length ; i++){
         let radio_btn = radio[i].children[1] ;
         radio[i].addEventListener('click' , () => {
             radio_btn.checked = true;
+            $(document).ready(function (){
+                $('#not-filled').removeClass('empty-gender') ;
+            })
             handle_radio() ;
         }) ;
     }

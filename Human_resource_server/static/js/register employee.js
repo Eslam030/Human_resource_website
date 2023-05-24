@@ -1,15 +1,9 @@
+// To handle the appearance of the page when it is loaded !!
 let register_page = document.getElementById('register') ;
 register_page.style.backgroundColor = "#ffffff" ;
 register_page.style.color = "#66717a" ;
 
-
-// check the final form
+// Function confirm it is defined in 'confirm.js' which handle
+// the registration it is explained there 
 let finish = document.getElementById('finish') ;
 finish.addEventListener('click' , confirm) ;
-
-/*let pp = document.getElementById('phone-number') ;
-let p = window.intlTelInput(pp , {
-    utilsScript:
-    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-}) */
-

@@ -1,3 +1,4 @@
+import json
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -56,17 +57,24 @@ def test(request):
 @csrf_exempt
 def post(request):
     if (request.method == 'POST'):
-        name = request.POST.get('firstname')
-        newid = int(request.POST.get('id'))
-        if models.test.objects.filter(id=newid).exists():
+        data = json.loads(request.body)
+        if models.employee.objects.filter(id=int(data.get('id'))).exists():
             return JsonResponse({'message': 'exist'})
-        else:
-            new = models.test()
-            new.firstname = name
-            new.id = newid
-            new.save()
-            return JsonResponse({'message': 'succ'})
+        newRec = models.employee()
+        newRec.name = data.get('name')
+        newRec.id = int(data.get('id'))
+        newRec.phone_number = data.get('phone-number')
+        newRec.e_mail = data.get('email')
+        newRec.gender = data.get('gender')
+        newRec.marital = data.get('employee-marital')
+        newRec.salary = float(data.get('salary'))
+        newRec.available_vacation = int(data.get('actual-vacations'))
+        newRec.actual_approved_vacations = int(
+            data.get('actual-vacations'))
+        newRec.date = data.get('date-of-birth')
+        newRec.save()
+        return JsonResponse({'message': 'done'})
     else:
-        return JsonResponse({'mees': 'fail'})
+        return JsonResponse({'message': 'fail'})
 
 # Create your views here.

@@ -62,37 +62,32 @@
                 </div>
             </div>
         </div>
+
+        
         <p class = "main-text">Registration</p>
         <form class = "form_register" id = "Register-form" action="main page.html">
             <div class = "collection">
-                <div class = "input_field in-collection">
-                    <input type="text" class = "input" id = "name" placeholder="Name">
-                </div>
-                <div class = "input_field in-collection">
-                    <input type="email" class = "input" id = "email" placeholder="E-mail">
-                </div>
+                <input type="text" class = "input-Register" id = "name" placeholder="Name">
+                <input type="email" class = "input-Register" id = "email" placeholder="E-mail">
             </div>
             <div class = "collection">
-                <div class = "input_field in-collection">
-                    <input type="text" class = "input" id = "id" placeholder="ID">
-                </div>
-                <div class = "input_field in-collection">
-                    <input type="tel" class = "input" id = "phone-number" placeholder="Phone-number">
-                </div>
+                <label class = "not-display" id = "not-filled"> This id is exist </label>
+                <input type="text" class = "input-Register" id = "id" placeholder="ID">
+                <input type="tel" class = "input-Register" id = "phone-number" placeholder="Phone-number">
             </div>
-            <div class = "gen">
+            <div class = "gen" id = "gender-field">
                 <div class = "Radio" id = "radio">
                     <p class = "name-of-selection">Gender</p>
-                    <div class = "Radio-selction">
-                        <div class = "btn">
+                    <div class = "Radio-selection">
+                        <div class = "btn" id = "male-btn">
                             <div class = "checked">
                             </div>
                         </div>
                         <input type = "radio" name = gender class = "Radio-btn" id = "male" >
                         <P class = "select select1">Male</P>
                     </div>
-                    <div class = "Radio-selction">
-                        <div class = "btn">
+                    <div class = "Radio-selection">
+                        <div class = "btn" id = "female-btn">
                             <div class = "checked">
                             </div>
                         </div>
@@ -100,18 +95,15 @@
                         <P class = "select select2">Female</P>
                     </div>
                 </div>
+                <label class = "not-display" id = "not-filled"> You have to chose one ^_^ </label>
             </div>
             <div class = "collection" >
-                <div class = "input_field in-collection">
-                    <input type="text" class = "input" id = "available-vacations" placeholder="Available Vacations">
-                </div>
-                <div class = "input_field in-collection">
-                    <input type="text" class = "input" id = "actual-vacations" placeholder="Actual Vacations">
-                </div>
+                <input type="text" class = "input-Register" id = "available-vacations" placeholder="Available Vacations">
+                <input type="text" class = "input-Register" id = "actual-vacations" placeholder="Actual ApproverVacations">
             </div>
-            <div class = "out-collection">
-                <div class = "selection " id = "control-selections">
-                    <div class = "open Marital-selection " id = "employee">
+            <div class = "collection">
+                <div class = "selection-register" id = "control-selections">
+                    <div class = "Marital-selection" id = "employee-marital">
                         <p class = "Marital" id = "status">Marital</p>
                     </div>
                     <div class = "list" id = "Martial-list">
@@ -121,18 +113,21 @@
                         <a>never married</a>
                     </div>
                 </div>
-            </div>
-            <div class = "input_field out-collection">
-                <input type="text" class = "input" id = "salary" placeholder="Salary">
+                <input type="text" class = "input-Register" id = "salary" placeholder="Salary">
             </div>
             <div class = "collection">
                 <p class = "DOB">DOB</p>
-                <div class = "input_field in-collection date">
-                    <input type = "date" class = "input" id = "date-of-birth">
-                </div>
+                <input type = "date" class = "input-Register date" id = "date-of-birth">
             </div>
             <input type="button" class = "edit-btn edit-in-register" id = "finish" value = "Register">
         </form> 
+        <script>
+            // Define a global JavaScript variable with the URL value
+            let ajaxUrl = "{% url 'data' %}";
+            let post = "{% url 'post' %}" ;
+            let main = "{% url 'Main' %}"
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src = "{% static 'js/data.js' %}"></script>
         <script src = "{% static 'js/nav bar.js' %}"></script>
         <script src = "{% static 'js/confirm.js' %}" ></script>

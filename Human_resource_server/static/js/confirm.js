@@ -1,6 +1,49 @@
+let data = {
+    'name' : null  ,
+    'Email' : null ,
+    'ID' : null , 
+    "phoneNumber" : null ,
+    "gender" : null ,
+    "Marital" : null ,
+    "salary" : null ,
+    "AvailableVacations" : null ,
+    "ActualApproverVacations" : null 
+}
+function emptyData (){
+    for (x in data) {
+        x = null ;
+    }
+}
+function checkAllData () {
+    // this will check that the data isn't null 
+
+}
 function confirm () {
-    let allgood = true ;
-    let fields = ['name' , 'email' , 'id' , 'phone-number' ,
+    console.log("tes") ;
+    $(document).ready(function(){
+        data['name'] = $('#name').val() ;
+        data['Email'] = $('#email').val() ;
+        data['id'] = $('#id').val();
+        data['phoneNumber'] = $('#phone-number').val() ;
+        data['AvailableVacations'] = $('#available-vacations') ;
+        data['ActualApproverVacations'] = $('#actual-vacations') ;
+        let gen = $('#radio').children ;
+        for (child in gen) {
+            console.log(child) ;
+        }
+        
+    })
+    if (checkAllData()){
+        $(document).ready(function(){
+            // get data
+            $.ajax({
+                
+            })
+        })
+    }
+    // check that all data is exist else a message will be appeared in the page
+    // first what is the data 
+/*     let fields = ['name' , 'email' , 'id' , 'phone-number' ,
     {'radio' : ['male' , 'female']} , 'available-vacations' ,
     'actual-vacations' , 'status' , 'salary' , 'date-of-birth']  ;
     let data = {} ;
@@ -59,7 +102,7 @@ function confirm () {
             window.localStorage['data'] = JSON.stringify(Jdata) ; 
             window.open('main page.html' , '_self') ;
         }
-    }
+    } */
 }
 function isDigit (word){
     return (word.charCodeAt(word.length - 1) >= 48 && word.charCodeAt(word.length - 1) <= 57) ;

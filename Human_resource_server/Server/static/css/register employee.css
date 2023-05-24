@@ -19,7 +19,7 @@ body {
     z-index: 1;
 }
 .date {
-    cursor: pointer;
+    padding-right: 4%;
 }
 .DOB {
     cursor: pointer;
@@ -33,8 +33,12 @@ body {
     left: 1%;
 }
 .Marital-selection {
+    font-family: 'Raleway';
+    font-size: 1.5vw;
+    font-weight: 600;
     background-color: #ffffff;
     border-radius: 20px;
+    padding-bottom: 4.5px;
 }
 .list a {
     cursor: pointer;
@@ -45,10 +49,12 @@ body {
     padding-bottom: 12px;
 }
 .Marital{
+    padding: 11px;
     color : #9b9b9b ;
     font-size: 1.5vw;
     cursor: pointer;
     text-align: start;
+    margin-left: 5px;
 }
 .form_register .list a:hover {
     background-color: #1772c1 ;
@@ -59,4 +65,31 @@ body {
 }
 .edit-in-register:hover {
     background-color: #ffffff;
+}
+.selection-register {
+    width: 50%;
+    padding-bottom: 4.5px;
+}
+
+.empty {
+    border : 2px red solid ;
+}
+
+.not-display {
+    display : none ;
+}
+.empty-gender{
+    position : relative ; 
+    top : 15% ;
+    left: 1.5%;
+    display: block;
+    color : red ;
+}
+.exist-id {
+    transition: display 1s;
+    display: block;
+    position: absolute;
+    left : 2% ;
+    top : 23% ;
+    color : red ;
 }
