@@ -15,15 +15,37 @@ function emptyData (){
         x = null ;
     }
 }
+// check if the salary is a float values
+function checkSalary (salary){
+    return !(isNaN(parseFloat(salary))) ;
+}
+// validation on email 
+function checkEmail (email){
+    let check = /^[A-Za-z0-9.-]+@[A-Za-z0-9]+\.+[A-Za-z0-9]+$/
+    return check.test(email) ;
+}
+// in future add a sign to tell the user that he have to input a valid mail format and a salary format
 function checkAllData () {
     // this will check that the data isn't null 
     for (item in _data) {
         if (_data[item] == "" || _data[item] == null) {
             return false ;
         }
+        if (item == 'salary'){
+            if (!checkSalary(_data[item])) {
+                return false ;
+            }
+        }
+        if (item == 'email') {
+            if (!checkEmail(_data[item])){
+                return false ; 
+            }
+        }
     }
     return true ;
 }
+
+// to confirm the registration request
 function confirm () {
     emptyData() ;
     $(document).ready(function(){
@@ -85,8 +107,9 @@ function confirm () {
 function isDigit (word){
     return (word.charCodeAt(word.length - 1) >= 48 && word.charCodeAt(word.length - 1) <= 57) ;
 }
+// handle the input and check if the input is only numbers or not
 function handle_input(id){
-    let numeric = ["id" , "phone-number" , "available-vacations" , "actual-vacations" , "salary"]
+    let numeric = ["id" , "phone-number" , "available-vacations" , "actual-vacations"]
     let input = document.getElementById(id) ,
     modified_text , text ;
     input.addEventListener('input' , ()=>{
@@ -100,7 +123,6 @@ function handle_input(id){
         text = input.value ;
     }) ;
 }
-
 handle_input('name') ;
 handle_input('email') ;
 handle_input('id') ;
@@ -109,10 +131,11 @@ handle_input('available-vacations')
 handle_input('actual-vacations') 
 handle_input('salary') ;
 
-let martails = document.getElementById('Martial-list').children ;
-for (let i = 0 ; i < martails.length ; i++){
-    martails[i].addEventListener ('click' , () => {
-        document.getElementById('status').innerHTML = martails[i].innerHTML ;
+// handle marital choices 
+let marital_statues = document.getElementById('Martial-list').children ;
+for (let i = 0 ; i < marital_statues.length ; i++){
+    marital_statues[i].addEventListener ('click' , () => {
+        document.getElementById('status').innerHTML = marital_statues[i].innerHTML ;
         if (document.getElementById('status').innerHTML != "Marital"){
             document.getElementById('status').style.color = "#000000" ;
         }
@@ -127,6 +150,7 @@ control.addEventListener('mouseleave' , () => {
     document.getElementById('Martial-list').style.display = "none" ;
 }) ;
 
+// handle data appearance
 let date = document.getElementById('date-of-birth') ;
 date.addEventListener('input' , () => {
     if (date.value.length == 0){
@@ -141,6 +165,8 @@ if (date.value.length == 0){
     date.style.color = "#000000" ;
 }
 
+
+// handle radio button appearance
 function check (radio){
     radio.children[0].children[0].style.display = "block" ;
 }
