@@ -16,7 +16,16 @@
 }
 .disable {
     display : none ;
+    
 }
 .disable a {
     display: none;
+}
+/*this class for the appearance of the form*/
+.format-class {
+    width: 50%;
+    height: 100%;
+}
+.disabled {
+    color : grey ;
 }

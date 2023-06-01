@@ -24,14 +24,14 @@
     border-radius: 20px;
     background-color: #ffffff;
     position: relative;
-    font-size: 1.5vw;
+    font-size: 115% ;
     width: 50%;
     height: 100%;
 }
 .input-Register::placeholder{
     cursor: text;
     color : #9b9b9b ;
-    font-size: 1.5vw;
+    font-size: 115% ;
 }
 
 .collection {

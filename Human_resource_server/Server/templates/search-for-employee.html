@@ -6,7 +6,7 @@
         <link href="{% static 'css/navbar.css' %}"  rel = "stylesheet">
         <link href="{% static 'css/input fields.css' %}" rel="stylesheet" >
         <link href="{% static 'css/edit-employee.css' %}" rel = "stylesheet">
-        <title>vacations</title>
+        <title>Search for Employee</title>
     </head>
     <body>
         <a href="{% url 'Main' %}">
@@ -47,18 +47,23 @@
                 </div>
             </div>
         </div>
-        <p class = "main-text text">Vacations</p>
-        <div class = "employee-list" id = "employee-list">
-            <div class = "employee" >
+        <div class = "top-page">
+            <p class = "text">Search</p>
+        </div>
+        <div class = "search-collection">
+            <input type="text" class = "input-search" id = "search-for-employee" placeholder="Employee Name">
+        </div>
+        <div class = "employee-list in-search" id = "employee-list-id">
+            <div class = "employee" id = "don't" >
                 <div class = "in-img">
                     <img src = "{% static 'images/search/user.png' %}" class = "user-icon">
                 </div>
-                <p>V.ID</p>
                 <p>Employee</p>
-                <p>Duration</p>
-                <p>Approve</p>
-                <p>Vacation Details</p>
-                <p class = "end">deny</p>
+                <p>Id</p>
+                <p>Salary</p>
+                <p>Available Vacations</p>
+                <p>Approved Vacations</p>
+                <p class = "end">Submit Vacation</p>
             </div>
             <footer id = "Footer"> 
                 <p class = "copyRight">
@@ -67,5 +72,13 @@
             </footer>
         </div>
     </body>
-    <script src = "{% static 'js/vacations.js' %}"></script>
+    <script>
+        // Define a global JavaScript variable with the URL value
+        let image = "{% static 'images/search/user.png' %}"
+        let get = "{% url 'getEmployeeData' %}" ;
+        let form = "{% url 'Vacation_Form' id=0 %}"
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src = "{% static 'js/data.js' %}"></script>
+    <script src = "{% static 'js/search_for_employee.js' %}"></script>
 </html>

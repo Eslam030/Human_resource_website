@@ -9,7 +9,7 @@ body {
     height: 95%;
 }
 .main-text {
-    color : #026fbb ;
+    color : #1e92c8 ;
     font-weight: 600;
     position: absolute;
     font-family: 'Raleway' ;
@@ -17,6 +17,8 @@ body {
     top : 8% ;
     font-size: 4vw;
     z-index: 1;
+    text-shadow: -2px 2px 5px #4987a6 ;
+    font-size: 350%;
 }
 .date {
     padding-right: 4%;
@@ -92,4 +94,19 @@ body {
     left : 2% ;
     top : 23% ;
     color : red ;
+}
+.register-btn {
+    background-color: #026fbb;
+    color : #ffffff ;
+    cursor: pointer;  
+    font-family: "Raleway";
+    width: 25%;
+    height: 8%;
+    font-size: calc(min(4vh , 2vw));
+    border-radius: 100px;
+}
+.register-btn:hover {
+    background-color: #d7d7d7 ;
+    color : #026fbb ;
+    transition: 0.5s;
 }

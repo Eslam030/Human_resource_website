@@ -4,8 +4,8 @@
     <head>
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
         <link href="{% static 'css/input fields.css' %}" rel="stylesheet" >
-        <link href="{% static 'css/search page.css' %}" rel = "stylesheet">
         <link href="{% static 'css/navbar.css' %}"  rel = "stylesheet">
+        <link href="{% static 'css/edit-employee.css' %}" rel = "stylesheet" >
         <link href = "{% static 'css/vacation form.css' %}" rel = "stylesheet">
         <title>vacation form</title>
     </head>
@@ -23,27 +23,20 @@
                         <div class = "open" id = "register" >Register employee</div>
                     </a>
                 </div>
-                <div class = "selection" >
-                    <div class = "open" id = "employee">employee</div>
-                    <div class = "list" >
-                        <a href="{% url 'Update' %}" id = "update">
-                            update employee
-                        </a>
-                        <a href="{% url 'Delete' %}" id = "delete">
-                            delete employee
-                        </a>
-                    </div>
+                <div class = "selection">
+                    <a href="{% url 'editEmployee' %}">
+                        <div class = "open" id = "edit">Edit Employee</div>
+                    </a>
                 </div>
-                <div class = "selection" >
-                    <div class = "open" id = "vacation">vacation</div>
-                    <div class = "list">
-                        <a href="{% url 'Vacation_Form' %}" id = "vacation-form">
-                            vacation form
-                        </a>
-                        <a href="{% url 'Vacation' %}" id = "vacations"> 
-                            vacations
-                        </a>
-                    </div>
+                <div class = "selection">
+                    <a href="{% url 'Vacation' %}">
+                        <div class = "open" id = "Vacations">Vacations</div>
+                    </a>
+                </div>
+                <div class = "selection">
+                    <a href="{% url 'searchForEmployee' %}" >
+                        <div class = "open" id = "searchForEmployee">Search for employee</div>
+                    </a>
                 </div>
                 <div class = "input-field" id = "input-field">
                     <form autocomplete="off">
@@ -55,26 +48,44 @@
                 </div>
             </div>
         </div>
-        <div class = "top-page vacation-pos">
-            <p class = "search-text vacation">Vacation Form</p>
+        <div class = "vacation-pos">
+            <p class = "vacation text">Vacation Form</p>
         </div>
         <div class = "texts">
             <div class = "image-contain first">
                 <img src = "{% static 'images/vacation form/user.png' %}" class = "user-image">
             </div>
-            <input type = "text" class = "text-vacation" placeholder="From" id = "From">
-            <input type = "text" class = "text-vacation end-text" placeholder="To" id = "To">
-            <textarea resize = "none" class = "text-area" placeholder="Reason" id = "Reason"></textarea>
-            <div class = "number-contain">
-                <input type="number" placeholder="Enter number of vacations" class = "number" id = "number-of-vacations">
+            <div class = "duration-container">
+                <label class = "form-label">From</label>
+                <input type = "date" class = "text-vacation" placeholder="From" id = "from">
             </div>
+            <div class = "duration-container">
+                <label class = "form-label">To</label>
+                <input type = "date" class = "text-vacation" placeholder="To" id = "to">
+            </div>
+            <div class = "duration-container">
+                <label class = "form-label">Status</label>
+                <input type = "text" class = "text-vacation input" placeholder="id" id = "employee-id">
+            </div>
+            <textarea resize = "none" class = "text-area" placeholder="Reason" id = "reason"></textarea>
             <div class = "accept-btn-contains end">
+                <label class = "disabled" id = "warn-message"></label>
                 <p class = "accept-message"></p>
                 <input class = "accept-btn" type="button" value = "Submit" id ="accept-btn">
             </div>
         </div>
     </body>
+    <script>
+        // Define a global JavaScript variable with the URL value
+        let number = "{% url 'numberOfVacations' %}"
+        let employeeVacations = "{% url 'numberOfEmployeeVacations' id=0 %}"
+        let add = "{% url 'addVacations' %}"
+        let updateVacations = "{% url 'updateEmployeeVacations' %}"
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src = "{% static 'js/data.js' %}"></script>
-    <script src = "{% static 'js/nav bar.js' %}"></script>
     <script src = "{% static 'js/vacation form.js' %}"></script>
+    <!--<script src = "{% static 'js/data.js' %}"></script>
+    <script src = "{% static 'js/nav bar.js' %}"></script>
+    <script src = "{% static 'js/vacation form.js' %}"></script>-->
 </html>

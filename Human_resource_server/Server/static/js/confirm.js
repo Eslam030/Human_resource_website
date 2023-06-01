@@ -1,15 +1,3 @@
-let _data = {
-    'name' : null  ,
-    'email' : null ,
-    'id' : null , 
-    "phone-number" : null ,
-    "gender" : null ,
-    "employee-marital" : null ,
-    "salary" : null ,
-    "available-vacations" : null ,
-    "actual-vacations" : null ,
-    'date-of-birth' : null
-}
 function emptyData (){
     for (x in _data) {
         x = null ;
@@ -24,7 +12,7 @@ function checkEmail (email){
     let check = /^[A-Za-z0-9.-]+@[A-Za-z0-9]+\.+[A-Za-z0-9]+$/
     return check.test(email) ;
 }
-// in future add a sign to tell the user that he have to input a valid mail format and a salary format
+// in future add a sign to tell the user that he have to input a valid mail format and a salary
 function checkAllData () {
     // this will check that the data isn't null 
     for (item in _data) {
@@ -46,30 +34,33 @@ function checkAllData () {
 }
 
 // to confirm the registration request
+function setData () {
+    _data['name'] = $('#name').val() ;
+    _data['email'] = $('#email').val() ;
+    _data['id'] = $('#id').val();
+    _data['phone-number'] = $('#phone-number').val() ;
+    _data['available-vacations'] = $('#available-vacations').val() ;
+    _data['actual-vacations'] = $('#actual-vacations').val() ;
+    _data['salary'] = $('#salary').val() ;
+    _data['date-of-birth'] = $('#date-of-birth').val() ;
+    let gender = $('#radio').children() ;
+    if ( gender[1].children[1].checked) {
+        _data['gender'] = 'male' ;
+    }else if (gender[2].children[1].checked){
+        _data['gender'] = 'female' ;
+    }
+    if ($('#status').html() != 'Marital') {
+        _data['employee-marital'] = $('#status').html() ;
+    }
+}
 function confirm () {
     emptyData() ;
     $(document).ready(function(){
-        _data['name'] = $('#name').val() ;
-        _data['email'] = $('#email').val() ;
-        _data['id'] = $('#id').val();
-        _data['phone-number'] = $('#phone-number').val() ;
-        _data['available-vacations'] = $('#available-vacations').val() ;
-        _data['actual-vacations'] = $('#actual-vacations').val() ;
-        _data['salary'] = $('#salary').val() ;
-        _data['date-of-birth'] = $('#date-of-birth').val() ;
-        let gender = $('#radio').children() ;
-        if ( gender[1].children[1].checked) {
-            _data['gender'] = 'male' ;
-        }else if (gender[2].children[1].checked){
-            _data['gender'] = 'female' ;
-        }
-        if ($('#status').html() != 'Marital') {
-            _data['employee-marital'] = $('#status').html() ;
-        }
+        setData() ;
     })
     if (checkAllData()){
         $(document).ready(function(){
-            // get data
+            // add data 
             $.ajax({
                 url : post ,
                 method : 'POST' ,
@@ -80,7 +71,7 @@ function confirm () {
                     if (response['message'] == "exist") {
                         $('#gender-field').addClass('move')
                         setTimeout(function (){
-                            $('#not-filled').addClass('exist-id') ;
+                            $('#id-exist').addClass('exist-id') ;
                         } , 200) ;
                     }else {
                         window.location.href = main;
@@ -151,19 +142,21 @@ control.addEventListener('mouseleave' , () => {
 }) ;
 
 // handle data appearance
-let date = document.getElementById('date-of-birth') ;
-date.addEventListener('input' , () => {
-    if (date.value.length == 0){
-        date.style.color = "#9b9b9b" ;
+
+$('#date-of-birth').on('input' , function (){
+    if ($(this).val() === ""){
+        $(this).css('color' , 'grey')
     }else {
-        date.style.color = "#000000" ;
+        $(this).css('color' , 'black')
     }
-});
-if (date.value.length == 0){
-    date.style.color = "#9b9b9b" ;
+})
+
+if ($('#date-of-birth').val() === ""){
+    $('#date-of-birth').css('color' , 'grey')
 }else {
-    date.style.color = "#000000" ;
+    $('#date-of-birth').css('color' , 'black')
 }
+
 
 
 // handle radio button appearance

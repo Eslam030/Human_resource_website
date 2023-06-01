@@ -6,7 +6,7 @@ class test (models.Model):
     firstname = models.CharField(max_length=255)
 
 
-class employee (models.Model):
+class user (models.Model):
     name = models.CharField(max_length=255)
     id = models.IntegerField().primary_key
     phone_number = models.CharField(max_length=255)
@@ -18,4 +18,14 @@ class employee (models.Model):
     actual_approved_vacations = models.IntegerField()
     date = models.CharField(max_length=255)
 
-    # implemenmt later this will handle the vacations data
+
+class vacations (models.Model):
+    vacation_id = models.IntegerField().primary_key
+    employee_id = models.IntegerField()
+    vacation_duration = models.IntegerField()
+    From = models.CharField(max_length=255)
+    To = models.CharField(max_length=255)
+    reason = models.CharField(max_length=255)
+    status = models.CharField(max_length=255)
+    # status will hold the status of the vacation ('submitted' , 'Accepted' , 'Rejected')
+# implement later this will handle the vacations data

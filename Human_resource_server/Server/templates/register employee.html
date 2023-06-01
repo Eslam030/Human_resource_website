@@ -5,7 +5,6 @@
         <meta charset="UTF-8" >
         <link href="{% static 'css/navbar.css' %}"  rel = "stylesheet">
         <link href="{% static 'css/input fields.css' %}" rel="stylesheet" >
-        <link href="{% static 'css/search page.css' %}" rel = "stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
         <link href="{% static 'css/register employee.css' %}" rel = "stylesheet" >
         <!--<link
@@ -30,27 +29,20 @@
                         <div class = "open" id = "register" >Register employee</div>
                     </a>
                 </div>
-                <div class = "selection" >
-                    <div class = "open" id = "employee">employee</div>
-                    <div class = "list" >
-                        <a href="{% url 'Update' %}" id = "update">
-                            update employee
-                        </a>
-                        <a href="{% url 'Delete' %}" id = "delete">
-                            delete employee
-                        </a>
-                    </div>
+                <div class = "selection">
+                    <a href="{% url 'editEmployee' %}">
+                        <div class = "open" id = "edit">Edit Employee</div>
+                    </a>
                 </div>
-                <div class = "selection" id = vacation>
-                    <div class = "open">vacation</div>
-                    <div class = "list">
-                        <a href="{% url 'Vacation_Form' %}" id = "vacation-form">
-                            vacation form
-                        </a>
-                        <a href="{% url 'Vacation' %}" id = "vacations"> 
-                            vacations
-                        </a>
-                    </div>
+                <div class = "selection">
+                    <a href="{% url 'Vacation' %}">
+                        <div class = "open" id = "Vacations">Vacations</div>
+                    </a>
+                </div>
+                <div class = "selection">
+                    <a href="{% url 'searchForEmployee' %}" >
+                        <div class = "open" id = "searchForEmployee">Search for employee</div>
+                    </a>
                 </div>
                 <div class = "input-field" id = "input-field">
                     <form autocomplete="off">
@@ -71,7 +63,7 @@
                 <input type="email" class = "input-Register" id = "email" placeholder="E-mail">
             </div>
             <div class = "collection">
-                <label class = "not-display" id = "not-filled"> This id is exist </label>
+                <label class = "not-display" id = "id-exist"> This id is exist </label>
                 <input type="text" class = "input-Register" id = "id" placeholder="ID">
                 <input type="tel" class = "input-Register" id = "phone-number" placeholder="Phone-number">
             </div>
@@ -117,13 +109,12 @@
             </div>
             <div class = "collection">
                 <p class = "DOB">DOB</p>
-                <input type = "date" class = "input-Register date" id = "date-of-birth">
+                <input type = "date" class = "input-Register date" id = "date-of-birth" placeholder="Select a date">
             </div>
-            <input type="button" class = "edit-btn edit-in-register" id = "finish" value = "Register">
+            <input type="button" class = "register-btn" id = "finish" value = "Register">
         </form> 
         <script>
             // Define a global JavaScript variable with the URL value
-            let ajaxUrl = "{% url 'data' %}";
             let post = "{% url 'post' %}" ;
             let main = "{% url 'Main' %}"
         </script>
