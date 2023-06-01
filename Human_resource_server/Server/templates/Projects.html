@@ -4,32 +4,36 @@
     <head>
         <link href="{% static 'css/projects.css' %}" , rel = "stylesheet" >
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+        <link href="{% static 'icons/projects.svg' %}" rel = "icon" >
+
         <title>Web projects</title>
     </head>
     <body>
-        <div class = "header">
-            <p  class = "main_text">
-                projects
-            </p>
+        <div class = "contain-header" >
+            <div class = "header">
+                <p  class = "main_text">
+                    projects
+                </p>
+            </div>
         </div>
         <div class = "container">
             <a href="{% url 'Main' %}" class = "anchor-style card">
-                <p>
+                <p class = "text-in-card">
                     Human Resources Website
                 </p>
             </a>
             <div class = "card">
-                <p>
+                <p class = "text-in-card">
                     Student Affairs Website
                 </p>
             </div>
             <div class = "card ">
-                <p>
+                <p class = "text-in-card">
                     Higher studies Website
                 </p>
             </div>
             <div class = "card">
-                <p>
+                <p class = "text-in-card">
                     Laboratory tracking website
                 </p>
             </div>

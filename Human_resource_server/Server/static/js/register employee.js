@@ -14,13 +14,17 @@ $(document).ready(function(){
         if (item !== 'gender') {
             let query = '#' + item ;
             if (item == 'id'){
-                $(query).on('click' , function(){
-                    $('#not-filled').removeClass('exist-id') ;
+                $(query).on('input' , function(){
+                    $('#id-exist').removeClass('exist-id') ;
                     $('#gender-field').removeClass('move')
                 }) ;
-
             }
-            $(query).on('click' , function(){$(query).removeClass('empty')}) ;
+            $(query).on('input' , function(){
+                if ($(this).val() !== ""){
+                    $(query).removeClass('empty')
+                }
+                $(query).removeClass('empty')
+            }) ;
         }
         // gender handled in confirm.js where we handle the animations of check boxes
     }

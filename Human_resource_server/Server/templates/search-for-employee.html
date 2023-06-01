@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+        <link href="{% static 'css/navbar.css' %}"  rel = "stylesheet">
+        <link href="{% static 'css/input fields.css' %}" rel="stylesheet" >
+        <link href="{% static 'css/edit-employee.css' %}" rel = "stylesheet">
+        <link href="{% static 'icons/search.svg' %}" rel = "icon" >
+
+        <title>Search for Employee</title>
+    </head>
+    <body>
+        <a href="{% url 'Main' %}">
+            <img src = "{% static 'images/main page assets/H (1).png' %}" class = "logo">
+        </a>
+        <a href="{% url 'Main' %}">
+            <p class = "contlogo">Human Resources</p>
+        </a>
+        <div class = "nav">
+            <div class = "container" >
+                <div class = "selection" >
+                    <a href="{% url 'Register' %}" >
+                        <div class = "open" id = "register" >Register employee</div>
+                    </a>
+                </div>
+                <div class = "selection">
+                    <a href="{% url 'editEmployee' %}">
+                        <div class = "open" id = "edit">Edit Employee</div>
+                    </a>
+                </div>
+                <div class = "selection">
+                    <a href="{% url 'Vacation' %}">
+                        <div class = "open" id = "Vacations">Vacations</div>
+                    </a>
+                </div>
+                <div class = "selection">
+                    <a href="{% url 'searchForEmployee' %}" >
+                        <div class = "open" id = "searchForEmployee">Search for employee</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class = "top-page">
+            <p class = "text">Search</p>
+        </div>
+        <div class = "search-collection">
+            <input type="text" class = "input-search" id = "search-for-employee" placeholder="Employee Name">
+        </div>
+        <div class = "employee-list in-search" id = "employee-list-id">
+            <div class = "employee" id = "don't" >
+                <div class = "in-img">
+                    <img src = "{% static 'images/search/user.png' %}" class = "user-icon">
+                </div>
+                <p>Employee</p>
+                <p>Id</p>
+                <p>Salary</p>
+                <p>Available Vacations</p>
+                <p>Approved Vacations</p>
+                <p class = "end">Submit Vacation</p>
+            </div>
+            <footer id = "Footer"> 
+                <p class = "copyRight">
+                    Human Resources website © Copyright 2023 FCAI-CU. All rights reserved.
+                </p>
+            </footer>
+        </div>
+    </body>
+    <script>
+        // Define a global JavaScript variable with the URL value
+        let image = "{% static 'images/search/user.png' %}"
+        let get = "{% url 'getEmployeeData' %}" ;
+        let form = "{% url 'Vacation_Form' id=0 %}"
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src = "{% static 'js/data.js' %}"></script>
+    <script src = "{% static 'js/search_for_employee.js' %}"></script>
+</html>

@@ -17,6 +17,7 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     column-gap: 20px;
+    padding-right: 8%;
 }
 input{
     position: relative;
