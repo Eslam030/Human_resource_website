@@ -1,11 +1,21 @@
 .profile {
-    left : 15vw ;
-    width: 60vw;
+    left : 5% ;
+    width: 85%;
+}
+label {
+    margin: auto;
+    color : #1772c1 ;
+    font-family: 'Raleway';
+    font-weight: 600;
+    font-size: 106%;
+    width: 26%;
 }
 .btns {
     display: flex;
-    width: 100%; 
-    justify-content: flex-end; 
+    width: 50%;
+    height: 10%; 
+    position: relative;
+    left: 30%;
     column-gap: 1vw;
 }
 .bgw:hover {
@@ -28,4 +38,11 @@
 }
 .disabled {
     color : grey ;
+}
+.close-margin {
+    margin-left: 0;
+}
+.font {
+    width: 30%;
+    font-size: 106%;
 }

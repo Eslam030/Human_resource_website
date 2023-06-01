@@ -35,26 +35,43 @@ function addElement (name , id , salary , vacations , ID) {
     newButton.addClass('delete-btn') ;
     newButtonContainer.append(newButton) ;
     newElementToAdd.append(newButtonContainer) ;
+    let del = false ;
     newButton.click(function(){
+        $('#dialog').fadeOut(500 , function (){
+            $('#dialog').css('display' , 'block')
+        })
+        $('#yes').click(function (){
+            del = true ;
+            $('#dialog').fadeOut(500 , function (){
+                $('#dialog').css('display' , 'none')
+            })
+            $.ajax({
+                url : Delete ,
+                method : 'POST' ,
+                data : {
+                    'data' : id 
+                } ,
+                success : function (response){
+                        // to delete the element which is deleted in the database 
+                        // if the request is a successful one
+                    $('#' + ID).fadeOut(350 , function(){
+                        $('#' + ID).css('display' , 'none')
+                    })
+                    console.log(response) ;
+                }, 
+                error : function(xhr , errmsg , err) {
+                    console.log('Fail') ;
+                }
+            }) ;
+            del = false ;
+        })
+        $('#no').click(function (){
+            $('#dialog').fadeOut(500 , function (){
+                $('#dialog').css('display' , 'none')
+            })
+        })
         // delete this user using post request
-        $.ajax({
-            url : Delete ,
-            method : 'POST' ,
-            data : {
-                'data' : id 
-            } ,
-            success : function (response){
-                    // to delete the element which is deleted in the database 
-                    // if the request is a successful one
-                $('#' + ID).fadeOut(350 , function(){
-                    $('#' + ID).css('display' , 'none')
-                })
-                console.log(response) ;
-            }, 
-            error : function(xhr , errmsg , err) {
-                console.log('Fail') ;
-            }
-        }) ;
+
     } ) ;
     // this made to avoid conflict between 2 buttons 
     newButtonContainer = $('<div></div>') ;

@@ -114,6 +114,8 @@ function allow_edit (){
     $('#Martial-list').removeClass('disable') ;
     $('#date-of-birth').css('color' , 'black') ;
     $('#status').css ('color' , 'black') ;
+    $('#gender-label').text('')
+    $('#toModify').append('<div class = "format-class"></div>')
 }
 
 deployData() ;

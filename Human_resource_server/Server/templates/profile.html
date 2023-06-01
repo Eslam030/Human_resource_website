@@ -7,6 +7,9 @@
         <link href="{% static 'css/input fields.css'%}" rel = "stylesheet">
         <link href="{% static 'css/register employee.css'%}" rel = "stylesheet" >
         <link href="{% static 'css/profile.css'%}" rel = "stylesheet" >
+        <link href="{% static 'css/edit-employee.css'%}" rel = "stylesheet" >
+        <link href="{% static 'icons/profile.svg' %}" rel = "icon" >
+
         <title id = "Title">data</title>
     </head>
     <body>
@@ -38,35 +41,27 @@
                         <div class = "open" id = "searchForEmployee">Search for employee</div>
                     </a>
                 </div>
-                <div class = "input-field" id = "input-field">
-                    <form autocomplete="off">
-                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
-                    </form>
-                    <img src = "{% static 'images/main page assets/search.png' %}" class = "image2">
-                    <div class = list , id = "search-list" style="display: block">
-                    </div>
-                </div>
             </div>
         </div>
         <div class = "top-page">
-            <p class = "search-text">profile</p>
+            <p class = "text main-text">profile</p>
         </div>
         <form class = "form_register profile" id = "Register-form" action="main page.html">
             <div class = "collection">
                 <label >Name</label>
-                <input type="text" class = "input-Register" id = "name" placeholder="Name">
+                <input type="text" class = "input-Register input-profile" id = "name" placeholder="Name">
                 <label >E-mail</label>
-                <input type="email" class = "input-Register" id = "email" placeholder="E-mail">
+                <input type="email" class = "input-Register input-profile" id = "email" placeholder="E-mail">
             </div>
             <div class = "collection">
                 <label >ID</label>
-                <input type="text" class = "input-Register" id = "id" placeholder="ID">
+                <input type="text" class = "input-Register input-profile" id = "id" placeholder="ID">
                 <label >phone</label>
-                <input type="tel" class = "input-Register" id = "phone-number" placeholder="Phone-number">
+                <input type="tel" class = "input-Register input-profile" id = "phone-number" placeholder="Phone-number">
             </div>
             <div class = "gen" id = "gender-field">
-                <div class = "Radio" id = "radio">
-                    <p class = "name-of-selection">Gender</p>
+                <div class = "Radio close-margin" id = "radio">
+                    <p class = "name-of-selection close-margin font">Gender</p>
                     <div class = "Radio-selection">
                         <div class = "btn" id = "male-btn">
                             <div class = "checked">
@@ -86,13 +81,13 @@
                 </div>
                 <label class = "not-display" id = "not-filled"> You have to chose one ^_^ </label>
             </div>
-            <div class = "collection" >
+            <div class = "collection test" >
                 <label >Available Vacations</label>
-                <input type="text" class = "input-Register" id = "available-vacations" placeholder="Available Vacations">
-                <label >Actual Approved Vacations</label>
-                <input type="text" class = "input-Register" id = "actual-vacations" placeholder="Actual Vacations">
+                <input type="text" class = "input-Register input-profile" id = "available-vacations" placeholder="Available Vacations">
+                <label >Approved Vacations</label>
+                <input type="text" class = "input-Register input-profile" id = "actual-vacations" placeholder="Actual Vacations">
             </div>
-            <div class = "collection">
+            <div class = "collection" id = "toModify">
                 <label >Marital status</label>
                 <div class = "selection-register" id = "control-selections">
                     <div class = "Marital-selection" id = "employee-marital">
@@ -105,17 +100,20 @@
                         <a>never married</a>
                     </div>
                 </div>
-                <label >Gender</label>
-                <input type="text" class = "input-Register" id = "gender" placeholder="Gender">
+                <label id = "gender-label">Gender</label>
+                <input type="text" class = "input-Register input-profile" id = "gender" placeholder="Gender">
             </div>
             <div class = "collection">
                 <label >Salary</label>
-                <input type="text" class = "input-Register" id = "salary" placeholder="Salary">
+                <input type="text" class = "input-Register input-profile" id = "salary" placeholder="Salary">
+                <label></label>
                 <div class = "format-class"></div>
             </div>
             <div class = "collection">
-                <p class = "DOB">DOB</p>
-                <input type = "date" class = "input-Register" id = "date-of-birth" placeholder="your DOB">
+                <label >DOB</label>
+                <input type = "date" class = "input-Register date" id = "date-of-birth" placeholder="your DOB">
+                <label></label>
+                <div class = "format-class"></div>
             </div>
             <div class = "btns">
                 <input type = "button" class = "function-btn delete-btn" id = "delete-finish" value = "Delete">

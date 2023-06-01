@@ -6,6 +6,8 @@
         <link href="{% static 'css/navbar.css' %}"  rel = "stylesheet">
         <link href="{% static 'css/input fields.css' %}" rel="stylesheet" >
         <link href="{% static 'css/edit-employee.css' %}" rel = "stylesheet">
+        <link href="{% static 'icons/search.svg' %}" rel = "icon" >
+
         <title>Search for Employee</title>
     </head>
     <body>
@@ -36,14 +38,6 @@
                     <a href="{% url 'searchForEmployee' %}" >
                         <div class = "open" id = "searchForEmployee">Search for employee</div>
                     </a>
-                </div>
-                <div class = "input-field" id = "input-field">
-                    <form autocomplete="off">
-                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
-                    </form>
-                    <img src = "{% static 'images/main page assets/search.png' %}" class = "image2">
-                    <div class = list , id = "search-list" style="display: block">
-                    </div>
                 </div>
             </div>
         </div>

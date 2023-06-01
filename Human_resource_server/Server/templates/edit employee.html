@@ -5,6 +5,7 @@
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
         <link href="{% static 'css/navbar.css' %}" , rel = "stylesheet">
         <link href="{% static 'css/edit-employee.css' %}" rel = "stylesheet" >
+        <link href="{% static 'icons/edit.svg' %}" rel = "icon" >
         <title id = "Title">update employee</title>
     </head>
     <body>
@@ -36,14 +37,6 @@
                         <div class = "open" id = "searchForEmployee">Search for employee</div>
                     </a>
                 </div>
-                <div class = "input-field" id = "input-field">
-                    <form autocomplete="off">
-                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
-                    </form>
-                    <img src = "{% static 'images/main page assets/search.png' %}" class = "image2">
-                    <div class = list , id = "search-list" style="display: block">
-                    </div>
-                </div>
             </div>
         </div>
         <p class = "main-text text">Employees</p>
@@ -64,6 +57,15 @@
                     Human Resources website © Copyright 2023 FCAI-CU. All rights reserved.
                 </p>
             </footer>
+        </div>
+        <div class = "cover out"  id = "dialog" >
+            <div class = "content">
+                <p class = "text dialog-text">Are You Sure ?</p>
+                <div class = "container-buttons">
+                    <input type = "button" , value = "Yes" , class = "delete-btn function-btn button" id = "yes">
+                    <input type = "button" , value = "No" , class = "edit-btn function-btn button" id = "no">
+                </div>
+            </div>
         </div>
     </body>
     <script>

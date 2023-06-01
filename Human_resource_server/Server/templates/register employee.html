@@ -7,11 +7,8 @@
         <link href="{% static 'css/input fields.css' %}" rel="stylesheet" >
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
         <link href="{% static 'css/register employee.css' %}" rel = "stylesheet" >
-        <!--<link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-        />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script> -->
+        <link href="{% static 'icons/register.svg' %}" rel = "icon" >
+
         <title id = "Title">Register new employee</title>
     </head>
     <body>
@@ -43,14 +40,6 @@
                     <a href="{% url 'searchForEmployee' %}" >
                         <div class = "open" id = "searchForEmployee">Search for employee</div>
                     </a>
-                </div>
-                <div class = "input-field" id = "input-field">
-                    <form autocomplete="off">
-                        <input type = "text" placeholder="  search" id = "search" class = "search-nav" >
-                    </form>
-                    <img src = "{% static 'images/main page assets/search.png' %}" class = "image2">
-                    <div class = list , id = "search-list" style="display: block">
-                    </div>
                 </div>
             </div>
         </div>

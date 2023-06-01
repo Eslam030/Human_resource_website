@@ -183,3 +183,39 @@ footer {
     font-size: 120%;
 }
 
+.cover {
+    width : 100% ;
+    height : 100% ;
+    position : absolute ;
+    z-index: 100;
+    background-color : rgba(0,0,0,0.4) ;
+}
+.content {
+    position: relative;
+    width: 50% ;
+    height: 30% ;
+    background-color: white;
+    left : 25% ;
+    top : 25% ;
+    border-radius : 30px ;
+}
+.container-buttons {
+    position: relative;
+    top : 25% ;
+    display: flex;
+    column-gap: 10%;
+    width: 100%;
+    justify-content: center;
+    height: 20%;
+}
+.button {
+    width : 40%
+}
+.dialog-text {
+    position: relative;
+    top : 10% ;
+    left : 25%
+}
+.out {
+    display: none;
+}
