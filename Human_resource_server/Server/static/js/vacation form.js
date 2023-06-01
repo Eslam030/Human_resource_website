@@ -10,14 +10,8 @@ $('#from').on('input' , function (){
 $('#to').on('input' , function (){
     $('#warn-message').removeClass('message') ;
 }) 
-let url = window.location.href.split('/') ;
-let id = url[url.length - 1] ;
 let employeeAvailableVacations = 0;
-if (id !== "0"){
-    $('#employee-id').attr('value' , id) ;
-    $('#employee-id').attr('disabled' , true) ;
-}
-getNumberOfEmployeeVacations() ;
+let employeeName = "";
 let vacation_id = 0;
 function getNumberOfVacations () {
     // get the number of 
@@ -32,7 +26,7 @@ function getNumberOfVacations () {
         }
     })
 }
-getNumberOfVacations() ;
+
 function getNumberOfEmployeeVacations () {
     let toGo = employeeVacations.replace('0' , '') ;
     if (id != "0"){
@@ -47,7 +41,9 @@ function getNumberOfEmployeeVacations () {
             url : toGo ,
             method : 'GET' , 
             success : function (response){
-                employeeAvailableVacations = parseInt(response) ;
+                data = (response)
+                employeeAvailableVacations = parseInt(data['available_vacation']) ;
+                employeeName = data['name'] ;
             } ,
             error : function (response){
                 console.log(response) ;
@@ -76,14 +72,16 @@ function setData () {
     vacation_data['reason'] = $('#reason').val() ;
     vacation_data['employee-id'] = $('#employee-id').val() ;
     vacation_data['duration'] = calculateDays() ;
-    vacation_data['vacation-id'] = vacation_id ;
+    vacation_data['id'] = vacation_id ;
     vacation_data['status'] = 'Submitted' ;
+    vacation_data['employee-name'] = employeeName
 }
 function check_data () {
     let status = true ;
     for (item in vacation_data) {
         if (vacation_data[item] == null || vacation_data[item] == ""){
             status = false ;
+            console.log(item)
         }
     }
     
@@ -135,12 +133,52 @@ function addVacations () {
 function accept () {
     setData() ;
     if (check_data()) {
+        console.log('test')
+        console.log(vacation_data)
         updateData ();
         addVacations() ;
+        $('#status').text('Submitted')
         $(this).off('click' , accept) ;
         $(this).removeClass('accept-btn') ;
-        $(this).addClass('static-btn'); 
+        $(this).addClass('static-btn');
     }
     emptyData() ;
 }
-$('#accept-btn').on ('click' , accept) ;
+
+let url = window.location.href.split('/') ;
+let id = url[url.length - 1] ;
+if (url[url.length - 2] == 'view_vacation') {
+    url = window.location.href.split('/') ;
+    let id = url[url.length - 1] ;
+    let toGo = getVacation.replace('0' , '') ;
+    toGo += id ;
+    $.ajax({
+        url : toGo , 
+        method : 'GET' ,
+        success : function (response) {
+            data = JSON.parse(response)
+            console.log(data) ;
+            $('#employee-id').attr('value' , data[1])
+            $('#from').attr('value' , data[3])
+            $('#to').attr('value' , data[4])
+            $('#reason').text(data[5])
+            $('#status').text(data[6])
+            $('#accept-btn').removeClass('accept-btn') ;
+            $('#accept-btn').addClass('static-btn');
+        } , 
+        error : function (){
+            console.log('fail')
+        }
+    })
+
+}else {
+    if (id !== "0"){
+        $('#employee-id').attr('value' , id) ;
+        $('#employee-id').attr('disabled' , true) ;
+    }
+    getNumberOfEmployeeVacations() ;
+    getNumberOfVacations() ;
+    $('#accept-btn').on ('click' , accept) ;
+}
+
+

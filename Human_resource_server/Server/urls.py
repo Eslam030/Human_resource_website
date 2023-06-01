@@ -24,6 +24,9 @@ urlpatterns = [
          views.getNumberOfEmployeeVacations, name="numberOfEmployeeVacations"),
     path('addVacations/', views.addVacations, name="addVacations"),
     path('updateEmployeeVacations/', views.updateVacations,
-         name="updateEmployeeVacations")
+         name="updateEmployeeVacations"),
+    path('vacations', views.vacations, name="vacations"),
+    path('updateStatus/', views.updateVacationStatus, name="updateStatus"),
+    path('getVacationById/<int:id>', views.getVacationById, name="getVacationById")
 
 ]

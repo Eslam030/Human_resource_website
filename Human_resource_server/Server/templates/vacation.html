@@ -48,8 +48,8 @@
             </div>
         </div>
         <p class = "main-text text">Vacations</p>
-        <div class = "employee-list" id = "employee-list">
-            <div class = "employee" >
+        <div class = "employee-list" id = "employee-list-id">
+            <div class = "employee" id = "don't" >
                 <div class = "in-img">
                     <img src = "{% static 'images/search/user.png' %}" class = "user-icon">
                 </div>
@@ -57,8 +57,8 @@
                 <p>Employee</p>
                 <p>Duration</p>
                 <p>Approve</p>
-                <p>Vacation Details</p>
-                <p class = "end">deny</p>
+                <p class>deny</p>
+                <p class = "end">Vacation Details</p>
             </div>
             <footer id = "Footer"> 
                 <p class = "copyRight">
@@ -67,5 +67,14 @@
             </footer>
         </div>
     </body>
+    <script>
+        // Define a global JavaScript variable with the URL value
+        let vacations = "{% url 'vacations' %}"
+        let image = "{% static 'images/search/user.png' %}"
+        let update = "{% url 'updateStatus' %}"
+        let view = "{% url 'view_vacation' id=0 %}"
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src = "{% static 'js/data.js' %}"></script>
     <script src = "{% static 'js/vacations.js' %}"></script>
 </html>

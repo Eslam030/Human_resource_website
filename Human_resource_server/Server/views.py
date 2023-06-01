@@ -54,13 +54,16 @@ def Vacation_From(request, id):
 
 
 def view_vacation(request, id):
-    temp = loader.get_template('vacation form.html')
-    return HttpResponse(temp.render())
+    if (id == '0' or models.vacations.objects.all().filter(id=id).exists() or id == 0):
+        temp = loader.get_template('vacation form.html')
+        return HttpResponse(temp.render())
+    else:
+        return HttpResponse('notExist')
 
 
 def getNumberOfEmployeeVacations(request, id):
     if (models.user.objects.all().filter(id=id).exists()):
-        return HttpResponse(models.user.objects.all().values().get(id=id).get('available_vacation'))
+        return JsonResponse(models.user.objects.all().values().get(id=id))
     else:
         return HttpResponse('not exist')
 
@@ -120,7 +123,6 @@ def getEmployeeData(request):
 
 def getEmployeeWithId(request, id):
     if (request.method == 'GET'):
-        print(id)
         if (id == '0' or models.user.objects.all().filter(id=id).exists()):
             data = models.user.objects.all().values().get(id=id)
             print(data)
@@ -169,8 +171,9 @@ def addVacations(request):
         newRec.reason = data.get('reason')
         newRec.employee_id = int(data.get('employee-id'))
         newRec.vacation_duration = int(data.get('duration'))
-        newRec.vacation_id = int(data.get('vacation-id'))
+        newRec.id = int(data.get('id'))
         newRec.status = data.get('status')
+        newRec.employee_name = data.get('employee-name')
         newRec.save()
         return HttpResponse('done')
     else:
@@ -187,5 +190,38 @@ def updateVacations(request):
         data.actual_approved_vacations += duration
         data.save()
         return HttpResponse('done')
+    else:
+        return HttpResponse('not exist')
+
+
+def vacations(request):
+    if (request.method == 'GET'):
+        data = models.vacations.objects.all().values()
+        jsonData = json.dumps(list(data.values()), default=str)
+        return JsonResponse(jsonData, safe=False)
+    else:
+        return JsonResponse({'message': 'Fail'})
+
+
+@csrf_exempt
+def updateVacationStatus(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        data = models.vacations.objects.all().get(id=id)
+        data.status = request.POST.get('status')
+        data.save()
+        return HttpResponse('done')
+        # data.save()
+    else:
+        return HttpResponse('not exist')
+
+
+def getVacationById(request, id):
+    if request.method == 'GET':
+        if (id == '0' or models.vacations.objects.all().filter(id=id).exists()):
+            data = models.vacations.objects.all().values().get(id=id)
+            print(data)
+            jsonData = json.dumps(list(data.values()), default=str)
+            return JsonResponse(jsonData, safe=False)
     else:
         return HttpResponse('not exist')

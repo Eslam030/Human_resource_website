@@ -1,94 +1,136 @@
-let delete_page = document.getElementById('vacations') ;
-delete_page.style.backgroundColor = "#66717a" ;
-delete_page.style.color = "#ffffff" ;
-delete_page.style.borderRadius = "10px" ; 
-let employee_page = document.getElementById('vacation') ;
-employee_page.style.backgroundColor = "#ffffff" ;
-employee_page.style.color = "#66717a" ; 
-
-function add_new_data (data){
-    let contain = document.createElement('div') ,
-    img = document.createElement('img') , 
-    V_id = document.createElement('p') ,
-    Employee = document.createElement('p'), 
-    Duration = document.createElement('p') ,
-    vacation , approve , deney;
-    contain.className = "employee"
-    img.src = "iamges/search/user.png" ;
-    img.className = "user-icon" ;
-    V_id.innerHTML = data['id'] ;
-    Employee.innerHTML =  data["from"];
-    Duration.innerHTML = data['duration'] ;
-    let class_of_btn ;
-    if (data['state'] === "Delete"){
-        class_of_btn = "delete-btn" ;
-    }else {
-        class_of_btn = "edit-btn " ;
-    }
-    State = document.createElement('input') ;
-    State.type = "button" ;
-    State.value = data['state'] ;
-    State.className = class_of_btn ;
-    if (data['state'] === "Delete"){
-        State.addEventListener('click' , ()=> {
-            delete_user(data['name'] ,data['id']) ;
-            contain.style.display = "none" ;
-        })
-    }else {
-        State.addEventListener('click' , ()=> {
-            window.localStorage['current_id'] = data['id'] ;
-            window.localStorage['appear_delete'] = false ;
-            window.open('profile.html' , "_self") ;
-        })
-    }
-    approve = document.createElement('input') ;
-    approve.type = "button" ;
-    approve.value = "Approve" ;
-    approve.className = "edit-btn" ;
-    approve.addEventListener ('click' , () => {
-        window.localStorage['final-id'] = number ;
-        let approved = JSON.parse(window.localStorage['approved']) ;
-        let vacations = JSON.parse(window.localStorage['vacations']) ;
-        let currnet = vacations[data["id"]] ;
-        approved[data["id"]] = currnet ;
-        contain.style.display = "none" ;
-        delete vacations[data["id"]] ;
-        window.localStorage['vacations'] = JSON.stringify(vacations) ;
-        window.localStorage['approved'] = JSON.stringify(approved) ;
-        let vacations_in = JSON.parse(window.localStorage['vacations']) 
-        let number ;
-        for (key in vacations_in){
-            number = vacations_in[key]['id'] ;
-        }
-    }) ;
-    deney = document.createElement('input') ;
-    deney.type = "button" ;
-    deney.value = "Deny" ;
-    deney.className = "delete-btn" ;
-    deney.addEventListener ('click' , () => {
-        let vacations = JSON.parse(window.localStorage['vacations']) ;
-        contain.style.display = "none" ;
-        delete vacations[data["id"]] ;
-        window.localStorage['vacations'] = JSON.stringify(vacations) ;
-        let vacations_in = JSON.parse(window.localStorage['vacations']) 
-        let number ;
-        for (key in vacations_in){
-            number = vacations_in[key]['id'] ;
-        }
-    }) ;
-    contain.appendChild(img) ;
-    contain.appendChild(V_id) ;
-    contain.appendChild(Employee) ;
-    contain.appendChild(Duration) ;
-    contain.appendChild(approve) ;
-    contain.appendChild(deney) ; 
-    document.getElementById('employee-list').appendChild(contain) ;
-}
-
-function load () {
-    let vacations = JSON.parse(window.localStorage['vacations']) ;
-    for (key in vacations){
-        add_new_data(vacations[key]) ;
+function emptyData (){
+    for (x in vacation_data) {
+        x = null ;
     }
 }
-load () ;
+function clearList (){
+    $('#employee-list-id').children().each(function (){
+        if ($(this).attr('id') != "don't"){
+            $(this).remove() ;
+        }
+    });
+}
+function makeElement (vid , name , duration , ID) {
+    let newElementToAdd = $('<div></div>');
+    newElementToAdd.attr('id' , ID) ;
+    newElementToAdd.addClass('employee') ;
+    let newImageContainer = $('<div></div>') ;
+    newImageContainer.addClass('in-img') ;
+    // the image
+    let newImage = $('<img>') ;
+    newImage.attr('src' , image) ; 
+    newImage.addClass('user-icon') ;
+    newImageContainer.append(newImage) ;
+    newElementToAdd.append(newImageContainer) ;
+    // the info
+    newElementToAdd.append ($('<p>'+ vid +'</p>')) ;
+    newElementToAdd.append ($('<p>'+ name +'</p>')) ;
+    newElementToAdd.append ($('<p>'+ duration +'</p>')) ;
+    // the buttons
+    let newButton = $('<input>') ;
+    let newButtonContainer = $('<div></div>') ;
+    newButtonContainer.addClass('container-btn') ;
+    newButton.attr('type' , 'button') ;
+    newButton.attr('value' , 'Approve') ;
+    newButton.addClass('function-btn') ;
+    newButton.addClass('edit-btn') ;
+    newButtonContainer.append(newButton) ;
+    newElementToAdd.append(newButtonContainer) ;
+    newButton.click(function(){
+        $.ajax({
+            url : update ,
+            method : 'POST' ,
+            data : {
+                'id' : vid ,
+                'status' : 'Approved'
+            } ,
+            success : function (response){
+                    // to delete the element which is deleted in the database 
+                    // if the request is a successful one
+                $('#' + ID).fadeOut(350 , function(){
+                    $('#' + ID).css('display' , 'none')
+                }) 
+            }, 
+            error : function(xhr , errmsg , err) {
+                console.log('Fail') ;
+            }
+        }) ;
+    })
+    $('#employee-list-id').append(newElementToAdd) ;
+    newButton = $('<input>') ;
+    newButtonContainer = $('<div></div>') ;
+    newButtonContainer.addClass('container-btn') ;
+    newButton.attr('type' , 'button') ;
+    newButton.attr('value' , 'Deny') ;
+    newButton.addClass('function-btn') ;
+    newButton.addClass('delete-btn') ;
+    newButtonContainer.append(newButton) ;
+    newElementToAdd.append(newButtonContainer) ;
+    newButton.click(function(){
+        $.ajax({
+            url : update ,
+            method : 'POST' ,
+            data : {
+                'id' : vid ,
+                'status' : 'Deny'
+            } ,
+            success : function (response){
+                    // to delete the element which is deleted in the database 
+                    // if the request is a successful one
+                $('#' + ID).fadeOut(350 , function(){
+                    $('#' + ID).css('display' , 'none')
+                }) 
+            }, 
+            error : function(xhr , errmsg , err) {
+                console.log('Fail') ;
+            }
+        }) ;
+    })
+    $('#employee-list-id').append(newElementToAdd) ;
+    newButton = $('<input>') ;
+    newButtonContainer = $('<div></div>') ;
+    newButtonContainer.addClass('container-btn') ;
+    newButton.attr('type' , 'button') ;
+    newButton.attr('value' , 'Details') ;
+    newButton.addClass('function-btn') ;
+    newButton.addClass('edit-btn') ;
+    newButtonContainer.append(newButton) ;
+    newElementToAdd.append(newButtonContainer) ;
+    newButton.click(function(){
+        // open a page 
+        let toGo = view.replace('0' , '') ;
+        toGo += vid ;
+        window.location.href = toGo ;
+    })
+    $('#employee-list-id').append(newElementToAdd) ;
+}
+function addFooter () {
+    let Footer = $('<footer></footer>') ;
+    Footer.attr('id' , "Footer") ;
+    let Paragraph = $('<p></p>') ;
+    Paragraph.addClass("copyRight") ;
+    Paragraph.text("Human Resources website © Copyright 2023 FCAI-CU. All rights reserved.") ;
+    Footer.append(Paragraph) ;
+    $('#employee-list-id').append(Footer) ;
+}
+emptyData() 
+$.ajax({
+    url : vacations ,
+    method : 'GET' ,
+    success : function (response){
+        let data = JSON.parse(response)
+        clearList()
+        let counter = 0 ;
+        for (item in data) {
+            if (data[item]['status'] == 'Submitted') {
+                makeElement(data[item]['id'] , data[item]['employee_name'] , data[item]['vacation_duration'] , counter) ;
+                counter ++ ;
+            }
+        }
+        addFooter () ;
+        // !!!! i want to add last class
+    } ,
+    error : function (){
+        console.log('fail') 
+    }
+}) 

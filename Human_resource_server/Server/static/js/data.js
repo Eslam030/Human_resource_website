@@ -12,7 +12,8 @@ let _data = {
 }
 let vacation_data = {
     'employee-id' : null ,
-    'vacation-id' : null ,
+    'employee-name' : null ,
+    'id' : null ,
     'duration' : null , 
     'from' : null ,
     'to' : null ,
