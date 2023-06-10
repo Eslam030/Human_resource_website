@@ -1,114 +1,106 @@
-let data = {
-    'name' : null  ,
-    'Email' : null ,
-    'ID' : null , 
-    "phoneNumber" : null ,
-    "gender" : null ,
-    "Marital" : null ,
-    "salary" : null ,
-    "AvailableVacations" : null ,
-    "ActualApproverVacations" : null 
-}
 function emptyData (){
-    for (x in data) {
+    for (x in _data) {
         x = null ;
     }
 }
+// check if the salary is a float values
+function checkSalary (salary){
+    return !(isNaN(parseFloat(salary))) ;
+}
+// validation on email 
+function checkEmail (email){
+    let check = /^[A-Za-z0-9.-]+@[A-Za-z0-9]+\.+[A-Za-z0-9]+$/
+    return check.test(email) ;
+}
+// in future add a sign to tell the user that he have to input a valid mail format and a salary
 function checkAllData () {
     // this will check that the data isn't null 
+    for (item in _data) {
+        if (_data[item] == "" || _data[item] == null) {
+            return false ;
+        }
+        if (item == 'salary'){
+            if (!checkSalary(_data[item])) {
+                return false ;
+            }
+        }
+        if (item == 'email') {
+            if (!checkEmail(_data[item])){
+                return false ; 
+            }
+        }
+    }
+    return true ;
+}
 
+// to confirm the registration request
+function setData () {
+    _data['name'] = $('#name').val() ;
+    _data['email'] = $('#email').val() ;
+    _data['id'] = $('#id').val();
+    _data['phone-number'] = $('#phone-number').val() ;
+    _data['available-vacations'] = $('#available-vacations').val() ;
+    _data['actual-vacations'] = $('#actual-vacations').val() ;
+    _data['salary'] = $('#salary').val() ;
+    _data['date-of-birth'] = $('#date-of-birth').val() ;
+    let gender = $('#radio').children() ;
+    if ( gender[1].children[1].checked) {
+        _data['gender'] = 'male' ;
+    }else if (gender[2].children[1].checked){
+        _data['gender'] = 'female' ;
+    }
+    if ($('#status').html() != 'Marital') {
+        _data['employee-marital'] = $('#status').html() ;
+    }
 }
 function confirm () {
-    console.log("tes") ;
+    emptyData() ;
     $(document).ready(function(){
-        data['name'] = $('#name').val() ;
-        data['Email'] = $('#email').val() ;
-        data['id'] = $('#id').val();
-        data['phoneNumber'] = $('#phone-number').val() ;
-        data['AvailableVacations'] = $('#available-vacations') ;
-        data['ActualApproverVacations'] = $('#actual-vacations') ;
-        let gen = $('#radio').children ;
-        for (child in gen) {
-            console.log(child) ;
-        }
-        
+        setData() ;
     })
     if (checkAllData()){
         $(document).ready(function(){
-            // get data
+            // add data 
             $.ajax({
-                
+                url : post ,
+                method : 'POST' ,
+                data : JSON.stringify(_data) , 
+                success : function(response){
+                    // handle response 
+                    // and if it is all good return the user to tha main page
+                    if (response['message'] == "exist") {
+                        $('#gender-field').addClass('move')
+                        setTimeout(function (){
+                            $('#id-exist').addClass('exist-id') ;
+                        } , 200) ;
+                    }else {
+                        window.location.href = main;
+                    }
+                } ,
+                error : function(xhr , errmsg , err){
+                    console.log('Failed')
+                }
             })
         })
-    }
-    // check that all data is exist else a message will be appeared in the page
-    // first what is the data 
-/*     let fields = ['name' , 'email' , 'id' , 'phone-number' ,
-    {'radio' : ['male' , 'female']} , 'available-vacations' ,
-    'actual-vacations' , 'status' , 'salary' , 'date-of-birth']  ;
-    let data = {} ;
-    for (let i = 0 ; i < fields.length ; i++){
-        if (typeof fields[i] === 'string'){
-            let field = document.getElementById(fields[i]) ;
-            if (fields[i] === 'status'){
-                if (field.innerHTML === 'Marital'){
-                    allgood = false ;
+    }else {
+        for (item in _data) {
+            if (_data[item] == "" || _data[item] == null) {
+                if (item != 'gender') {
+                    $('#'+item).addClass('empty') ;
                 }else {
-                    data['marital-status'] = field.innerHTML ;
+                    $('#not-filled').addClass('empty-gender') ;
                 }
-            }else {
-                if (field.value.length === 0){
-                    allgood = false ;
-                }else {
-                    data[fields[i]] = field.value ;
-                }
-            }
-        }else {
-            let btns = fields[i]['radio'] , checked = false ;
-            for (let i = 0 ; i < btns.length ; i++){
-                if (document.getElementById(btns[i]).checked){
-                    data['gender'] = btns[i] ;
-                    checked = true ;
-                    break ;
-                }
-            }
-            if (!checked){
-                allgood = false ;
             }
         }
-        
+        console.log("FUCK PROGRAMMING") ;
     }
-    console.log(allgood) ;
-    if (allgood){
-        let title = document.getElementById('Title').innerHTML  ;
-        console.log(title) ;
-        if (title === "Register new employee"){
-            if (addData(data['name'] , data['id']))  {
-                if (!window.localStorage['data']){
-                    window.localStorage.setItem('data' , '{}') ;
-                }
-                let Jdata = JSON.parse (window.localStorage['data']) ;
-                Jdata[data['id']] = data ;
-                window.localStorage['data'] = JSON.stringify(Jdata) ; 
-                document.getElementById('Register-form').submit() ;
-            }
-        }else {
-            update_data(data['name'] , data['id']) ;
-            if (!window.localStorage['data']){
-                window.localStorage.setItem('data' , '{}') ;
-            }
-            let Jdata = JSON.parse (window.localStorage['data']) ;
-            Jdata[data['id']] = data ;
-            window.localStorage['data'] = JSON.stringify(Jdata) ; 
-            window.open('main page.html' , '_self') ;
-        }
-    } */
 }
 function isDigit (word){
     return (word.charCodeAt(word.length - 1) >= 48 && word.charCodeAt(word.length - 1) <= 57) ;
 }
+// handle the input and check if the input is only numbers or not
 function handle_input(id){
-    let numeric = ["id" , "phone-number" , "available-vacations" , "actual-vacations" , "salary"]
+    let numeric = ["id" , "phone-number" , "available-vacations" , "actual-vacations"]
     let input = document.getElementById(id) ,
     modified_text , text ;
     input.addEventListener('input' , ()=>{
@@ -122,7 +114,6 @@ function handle_input(id){
         text = input.value ;
     }) ;
 }
-
 handle_input('name') ;
 handle_input('email') ;
 handle_input('id') ;
@@ -131,10 +122,11 @@ handle_input('available-vacations')
 handle_input('actual-vacations') 
 handle_input('salary') ;
 
-let martails = document.getElementById('Martial-list').children ;
-for (let i = 0 ; i < martails.length ; i++){
-    martails[i].addEventListener ('click' , () => {
-        document.getElementById('status').innerHTML = martails[i].innerHTML ;
+// handle marital choices 
+let marital_statues = document.getElementById('Martial-list').children ;
+for (let i = 0 ; i < marital_statues.length ; i++){
+    marital_statues[i].addEventListener ('click' , () => {
+        document.getElementById('status').innerHTML = marital_statues[i].innerHTML ;
         if (document.getElementById('status').innerHTML != "Marital"){
             document.getElementById('status').style.color = "#000000" ;
         }
@@ -149,20 +141,25 @@ control.addEventListener('mouseleave' , () => {
     document.getElementById('Martial-list').style.display = "none" ;
 }) ;
 
-let date = document.getElementById('date-of-birth') ;
-date.addEventListener('input' , () => {
-    if (date.value.length == 0){
-        date.style.color = "#9b9b9b" ;
+// handle data appearance
+
+$('#date-of-birth').on('input' , function (){
+    if ($(this).val() === ""){
+        $(this).css('color' , 'grey')
     }else {
-        date.style.color = "#000000" ;
+        $(this).css('color' , 'black')
     }
-});
-if (date.value.length == 0){
-    date.style.color = "#9b9b9b" ;
+})
+
+if ($('#date-of-birth').val() === ""){
+    $('#date-of-birth').css('color' , 'grey')
 }else {
-    date.style.color = "#000000" ;
+    $('#date-of-birth').css('color' , 'black')
 }
 
+
+
+// handle radio button appearance
 function check (radio){
     radio.children[0].children[0].style.display = "block" ;
 }
@@ -189,6 +186,9 @@ for (let i = 0 ; i < radio.length ; i++){
         let radio_btn = radio[i].children[1] ;
         radio[i].addEventListener('click' , () => {
             radio_btn.checked = true;
+            $(document).ready(function (){
+                $('#not-filled').removeClass('empty-gender') ;
+            })
             handle_radio() ;
         }) ;
     }
