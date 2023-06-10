@@ -22,30 +22,25 @@
         <p class = "font second position2">IN Human Resource</p>
         <div class = "nav">
             <div class = "container" >
-                <div class = "selection" >
-                    <a href="{% url 'Register' %}" >
-                        <div class = "open" id = "register" >Register employee</div>
-                    </a>
+                <div class = "selection" id = "register">
+                    <div class = "open"  >Register employee</div>
                 </div>
-                <div class = "selection">
-                    <a href="{% url 'editEmployee' %}">
-                        <div class = "open" id = "edit">Edit Employee</div>
-                    </a>
+                <div class = "selection" id = "edit">
+                    <div class = "open" >Edit Employee</div>
                 </div>
-                <div class = "selection">
-                    <a href="{% url 'Vacation' %}">
-                        <div class = "open" id = "Vacations">Vacations</div>
-                    </a>
+                <div class = "selection" id = "Vacations">
+                    <div class = "open" >Vacations</div>
                 </div>
-                <div class = "selection">
-                    <a href="{% url 'searchForEmployee' %}" >
-                        <div class = "open" id = "searchForEmployee">Search for employee</div>
-                    </a>
+                <div class = "selection" id = "searchForEmployee">
+                    <div class = "open" >Search for employee</div>
                 </div>
             </div>
         </div>
-
     </body>
-    <script src = "{% static 'js/data.js' %}"></script>
-    <script src = "{% static 'nav bar.js' %}"></script>
+    <script>
+        let Register = "{% url 'Register' %}" , edit = "{% url 'editEmployee' %}" , 
+        vacation = "{% url 'Vacation' %}" , search = "{% url 'searchForEmployee' %}" ;
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src = "{% static 'js/nav bar.js' %}"></script>
 </html>

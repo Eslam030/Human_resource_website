@@ -1,11 +1,6 @@
 from django.db import models
 
 
-class test (models.Model):
-    id = models.ImageField().primary_key
-    firstname = models.CharField(max_length=255)
-
-
 class user (models.Model):
     name = models.CharField(max_length=255)
     id = models.IntegerField().primary_key
@@ -28,5 +23,6 @@ class vacations (models.Model):
     reason = models.CharField(max_length=255)
     status = models.CharField(max_length=255)
     employee_name = models.CharField(max_length=255)
+
     # status will hold the status of the vacation ('submitted' , 'Accepted' , 'Rejected')
 # implement later this will handle the vacations data
