@@ -9,7 +9,7 @@
     "routes" : [
         {
             "source" : "/(.*)" ,
-            "destination" : "Human_resource_server/wsgi.py"
+            "destination" : "/Human_resource_server/wsgi.py"
         }
     ]
 
