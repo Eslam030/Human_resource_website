@@ -79,11 +79,9 @@ function setData () {
     vacation_data['employee-name'] = employeeName
 }
 function check_data () {
-    let status = true ;
     for (item in vacation_data) {
         if (vacation_data[item] == null || vacation_data[item] == ""){
-            status = false ;
-            console.log(item)
+            return false ;
         }
     }
     
@@ -92,16 +90,17 @@ function check_data () {
             $('#warn-message').text(`you can't request this amount of days you only have ${employeeAvailableVacations}`) ;
             $('#warn-message').addClass('message') ;
         }
-        status = false ;
+        return false ;
     }else {
         if (vacation_data['duration'] <= 0){
             $('#warn-message').text(`you can't request a negative amount of days`) ;
             $('#warn-message').addClass('message') ;
+            return false ;
         }else {
             $('#warn-message').removeClass('message') ;
         }
     }
-    return status ;
+    return true  ;
 }
 function updateData () {
     $.ajax({

@@ -16,7 +16,10 @@ class user (models.Model):
 
 class vacations (models.Model):
     id = models.IntegerField().primary_key
-    employee_id = models.IntegerField()
+    employee_id = models.ForeignKey(
+        user,
+        on_delete=models.CASCADE
+    )
     vacation_duration = models.IntegerField()
     From = models.CharField(max_length=255)
     To = models.CharField(max_length=255)
