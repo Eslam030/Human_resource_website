@@ -1,17 +1,15 @@
 {
     "builds" : [
         {
-            "source" : "/Human_resource_server/wsgi.py" , 
+            "src" : "/Human_resource_server/wsgi.py" , 
             "use" : "@vercel/python" , 
             "config" : {"maxLambdaSize" : "15mb" , "runtime" : "python3.9" }
         }
     ] ,
     "routes" : [
         {
-            "source" : "/(.*)" ,
-            "destination" : "/Human_resource_server/wsgi.py"
+            "src" : "/(.*)" ,
+            "dest" : "/Human_resource_server/wsgi.py"
         }
     ]
-
-    
 }

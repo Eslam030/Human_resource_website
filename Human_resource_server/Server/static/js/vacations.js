@@ -1,3 +1,5 @@
+$('#Vacations').css('background' , "#ffffff") ;
+$('#Vacations').css('color' , "#66717a") ;
 function emptyData (){
     for (x in vacation_data) {
         x = null ;
