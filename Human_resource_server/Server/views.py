@@ -146,7 +146,7 @@ def post(request):
         newRec.gender = data.get('gender')
         newRec.marital = data.get('employee-marital')
         newRec.salary = float(data.get('salary'))
-        newRec.available_vacation = int(data.get('actual-vacations'))
+        newRec.available_vacation = int(data.get('available-vacations'))
         newRec.actual_approved_vacations = int(
             data.get('actual-vacations'))
         newRec.date = data.get('date-of-birth')
@@ -169,7 +169,8 @@ def addVacations(request):
         newRec.From = data.get('from')
         newRec.To = data.get('to')
         newRec.reason = data.get('reason')
-        newRec.employee_id = int(data.get('employee-id'))
+        user = models.user(id=int(data.get('employee-id')))
+        newRec.employee_id = user
         newRec.vacation_duration = int(data.get('duration'))
         newRec.id = int(data.get('id'))
         newRec.status = data.get('status')

@@ -1,7 +1,6 @@
 // To handle the appearance of the page when it is loaded !!
-let register_page = document.getElementById('register') ;
-register_page.style.backgroundColor = "#ffffff" ;
-register_page.style.color = "#66717a" ;
+$('#register').css('background' , "#ffffff") ;
+$('#register').css('color' , "#66717a") ;
 
 // Function confirm it is defined in 'confirm.js' which handle
 // the registration it is explained there 
@@ -18,6 +17,10 @@ $(document).ready(function(){
                     $('#id-exist').removeClass('exist-id') ;
                     $('#gender-field').removeClass('move')
                 }) ;
+            }else if (item == 'employee-marital') {
+                $('#Martial-list').on('click', function(){
+                    $(query).removeClass('empty')
+                }) 
             }
             $(query).on('input' , function(){
                 if ($(this).val() !== ""){

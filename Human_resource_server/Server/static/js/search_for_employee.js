@@ -1,4 +1,8 @@
-// we make this to search by name and handle the case of duplicated names with different ids
+// we make this to Search by name and handle the case of duplicated names with different ids
+$('#searchForEmployee').css('background' , "#ffffff") ;
+$('#searchForEmployee').css('color' , "#66717a") ;
+
+
 dataByIDs = {} ;
 dataByNames = {} ;
 function clearList (){
@@ -68,21 +72,22 @@ function setData (){
         error : function (){
             console.log('fail')
         }
+    }).then(function() {
+        clearList() ;
+        Search("") ;
     })
 }
 setData() ;
-function search (want_name){
+function Search (want_name){
     want_name = want_name.toLowerCase() ;
     let counter = 0 ;
-    if (want_name !== "") {
-        for (Name in  dataByNames){
-            let nameToCheck = Name.toLowerCase() ;
-            if (nameToCheck.includes(want_name)){
-                for (id in dataByNames[Name]) {
-                    let dataToAdd =  dataByIDs[dataByNames[Name][id]] ;
-                    makeElement(dataToAdd['name'] , dataToAdd['id'] , dataToAdd['salary'] , dataToAdd['available_vacation'] , dataToAdd['actual_approved_vacations'], counter)
-                    counter ++ ;
-                }
+    for (Name in  dataByNames){
+        let nameToCheck = Name.toLowerCase() ;
+        if (nameToCheck.includes(want_name)){
+            for (id in dataByNames[Name]) {
+                let dataToAdd =  dataByIDs[dataByNames[Name][id]] ;
+                makeElement(dataToAdd['name'] , dataToAdd['id'] , dataToAdd['salary'] , dataToAdd['available_vacation'] , dataToAdd['actual_approved_vacations'], counter)
+                counter ++ ;
             }
         }
     }
@@ -91,5 +96,5 @@ function search (want_name){
 }
 $('#search-for-employee').on('input' , function (){
     clearList() ;
-    search($(this).val()) ;
+    Search($(this).val()) ;
 })

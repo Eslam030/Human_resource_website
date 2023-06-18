@@ -80,21 +80,22 @@ function check_data () {
     let status = true ;
     for (item in vacation_data) {
         if (vacation_data[item] == null || vacation_data[item] == ""){
-            status = false ;
-            console.log(item)
+            return false ;
         }
     }
-    
+    console.log(employeeAvailableVacations)
     if (vacation_data['duration'] == null ||  vacation_data['duration']  > employeeAvailableVacations) {
         if (vacation_data['duration']  > employeeAvailableVacations) {
             $('#warn-message').text(`you can't request this amount of days you only have ${employeeAvailableVacations}`) ;
             $('#warn-message').addClass('message') ;
         }
-        status = false ;
+        return false ;
     }else {
         if (vacation_data['duration'] <= 0){
+            console.log("fffff") ;
             $('#warn-message').text(`you can't request a negative amount of days`) ;
             $('#warn-message').addClass('message') ;
+            return false ;
         }else {
             $('#warn-message').removeClass('message') ;
         }
@@ -132,7 +133,9 @@ function addVacations () {
 }
 function accept () {
     setData() ;
-    if (check_data()) {
+    console.log(vacation_data) ;
+    console.log(check_data()) ;
+    /*if (check_data()) {
         console.log('test')
         console.log(vacation_data)
         updateData ();
@@ -141,7 +144,7 @@ function accept () {
         $(this).off('click' , accept) ;
         $(this).removeClass('accept-btn') ;
         $(this).addClass('static-btn');
-    }
+    }*/
     emptyData() ;
 }
 
