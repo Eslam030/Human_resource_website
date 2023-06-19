@@ -74,6 +74,7 @@ body {
     position: relative;
     border-radius: 15px;
 }
+
 .last {
     margin-bottom: 30px;
 }
@@ -117,6 +118,7 @@ footer {
     top : 9% ;
     position: absolute;
 }
+
 .in-img {
     width : 6% ;
     margin : auto ;
@@ -141,6 +143,7 @@ footer {
     font-size : 120% ;
     font-weight: 600;
 }
+
 .employee > .end {
     border-right: 1px transparent solid;
 }

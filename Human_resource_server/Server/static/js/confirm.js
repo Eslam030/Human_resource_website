@@ -92,7 +92,6 @@ function confirm () {
                 }
             }
         }
-        console.log("FUCK PROGRAMMING") ;
     }
 }
 function isDigit (word){
@@ -150,6 +149,7 @@ $('#date-of-birth').on('input' , function (){
         $(this).css('color' , 'black')
     }
 })
+
 
 if ($('#date-of-birth').val() === ""){
     $('#date-of-birth').css('color' , 'grey')

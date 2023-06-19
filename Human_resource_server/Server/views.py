@@ -73,7 +73,7 @@ def profile(request, id):
         temp = loader.get_template('profile.html')
         return HttpResponse(temp.render())
     else:
-        return HttpResponse("isn't exist")
+        return HttpResponse("not exist")
 
 
 @csrf_exempt
@@ -181,16 +181,22 @@ def addVacations(request):
         return HttpResponse('not exist')
 
 
+
 @csrf_exempt
-def updateVacations(request):
-    if (request.method == 'POST'):
-        id = request.POST.get('id')
-        duration = int(request.POST.get('duration'))
-        data = models.user.objects.all().get(id=id)
-        data.available_vacation -= duration
-        data.actual_approved_vacations += duration
-        data.save()
-        return HttpResponse('done')
+def updateVacationStatus(request):
+    if request.method == 'POST':
+        vacationId = request.POST.get('id')
+        newStatus = request.POST.get('status')
+        vacation = models.vacations.objects.all().get(id=vacationId)
+        if newStatus == "Approve":
+            # Edit employee vacations 
+            employee = models.user.objects.all().get(id = vacation.employee_id.id)
+            employee.available_vacation -= int(vacation.vacation_duration)
+            employee.actual_approved_vacations += int(vacation.vacation_duration)
+            employee.save() 
+        vacation.status = newStatus
+        vacation.save()
+        return HttpResponse('Done')
     else:
         return HttpResponse('not exist')
 
@@ -202,19 +208,6 @@ def vacations(request):
         return JsonResponse(jsonData, safe=False)
     else:
         return JsonResponse({'message': 'Fail'})
-
-
-@csrf_exempt
-def updateVacationStatus(request):
-    if request.method == 'POST':
-        id = request.POST.get('id')
-        data = models.vacations.objects.all().get(id=id)
-        data.status = request.POST.get('status')
-        data.save()
-        return HttpResponse('done')
-        # data.save()
-    else:
-        return HttpResponse('not exist')
 
 
 def getVacationById(request, id):
