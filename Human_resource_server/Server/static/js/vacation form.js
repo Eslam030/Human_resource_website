@@ -102,22 +102,7 @@ function check_data () {
     }
     return true  ;
 }
-function updateData () {
-    $.ajax({
-        url : updateVacations ,
-        method : 'POST' ,
-        data :  {
-            'id' : $('#employee-id').val() ,
-            'duration' : vacation_data['duration']
-        } ,
-        success : function () {
-            console.log('done')
-        } ,
-        error : function (){
-            console.log('fail')
-        }
-    })
-}
+
 function addVacations () {
     $.ajax({
         url : add ,
@@ -134,9 +119,6 @@ function addVacations () {
 function accept () {
     setData() ;
     if (check_data()) {
-        console.log('test')
-        console.log(vacation_data)
-        updateData ();
         addVacations() ;
         $('#status').text('Submitted')
         $(this).off('click' , accept) ;
@@ -149,6 +131,7 @@ function accept () {
 let url = window.location.href.split('/') ;
 let id = url[url.length - 1] ;
 if (url[url.length - 2] == 'view_vacation') {
+    // the request comes from a view vacation 
     url = window.location.href.split('/') ;
     let id = url[url.length - 1] ;
     let toGo = getVacation.replace('0' , '') ;
@@ -158,11 +141,13 @@ if (url[url.length - 2] == 'view_vacation') {
         method : 'GET' ,
         success : function (response) {
             data = JSON.parse(response)
-            console.log(data) ;
             $('#employee-id').attr('value' , data[1])
             $('#from').attr('value' , data[3])
+            $('#from').attr('disabled' , true)
             $('#to').attr('value' , data[4])
+            $('#to').attr('disabled' , true)
             $('#reason').text(data[5])
+            $('#reason').attr('disabled' , true)
             $('#status').text(data[6])
             $('#accept-btn').removeClass('accept-btn') ;
             $('#accept-btn').addClass('static-btn');

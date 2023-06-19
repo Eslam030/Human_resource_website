@@ -1,5 +1,5 @@
-$('#searchForEmployee').css('background-color' , "#ffffff") ;
-$('#searchForEmployee').css('color' , "#66717a") ;
+$('#edit').css('background-color' , "#ffffff") ;
+$('#edit').css('color' , "#66717a") ;
 
 // set the data which come from the response of the get request
 function setDataFromResponse (response) {

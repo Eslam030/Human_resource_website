@@ -65,7 +65,6 @@ function setData (){
                 if (!(data[item]['name'] in dataByNames)) {
                     dataByNames[data[item]['name']] = [] ;
                 }
-                console.log(dataByIDs) ;
                 dataByNames[data[item]['name']].push(data[item]['id']) ;
             }
         } ,

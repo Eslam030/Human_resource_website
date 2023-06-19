@@ -5,6 +5,22 @@ function emptyData (){
         x = null ;
     }
 }
+function updateData () {
+    $.ajax({
+        url : updateVacations ,
+        method : 'POST' ,
+        data :  {
+            'id' : vacation_data['employee-id'] ,
+            'duration' : vacation_data['duration']
+        } ,
+        success : function () {
+            console.log('done')
+        } ,
+        error : function (){
+            console.log('fail')
+        }
+    })
+}
 function clearList (){
     $('#employee-list-id').children().each(function (){
         if ($(this).attr('id') != "don't"){
@@ -12,7 +28,7 @@ function clearList (){
         }
     });
 }
-function makeElement (vid , name , duration , ID) {
+function makeElement (vid , name , duration , ID ) {
     let newElementToAdd = $('<div></div>');
     newElementToAdd.attr('id' , ID) ;
     newElementToAdd.addClass('employee') ;
@@ -27,7 +43,7 @@ function makeElement (vid , name , duration , ID) {
     // the info
     newElementToAdd.append ($('<p>'+ vid +'</p>')) ;
     newElementToAdd.append ($('<p>'+ name +'</p>')) ;
-    newElementToAdd.append ($('<p>'+ duration +'</p>')) ;
+    newElementToAdd.append ($('<p class = "end">'+ duration +'</p>')) ;
     // the buttons
     let newButton = $('<input>') ;
     let newButtonContainer = $('<div></div>') ;
@@ -44,14 +60,14 @@ function makeElement (vid , name , duration , ID) {
             method : 'POST' ,
             data : {
                 'id' : vid ,
-                'status' : 'Approved'
+                'status' : 'Approve' 
             } ,
             success : function (response){
                     // to delete the element which is deleted in the database 
                     // if the request is a successful one
-                $('#' + ID).fadeOut(350 , function(){
+               $('#' + ID).fadeOut(350 , function(){
                     $('#' + ID).css('display' , 'none')
-                }) 
+                })
             }, 
             error : function(xhr , errmsg , err) {
                 console.log('Fail') ;
@@ -74,7 +90,7 @@ function makeElement (vid , name , duration , ID) {
             method : 'POST' ,
             data : {
                 'id' : vid ,
-                'status' : 'Deny'
+                'status' : 'Deny' 
             } ,
             success : function (response){
                     // to delete the element which is deleted in the database 
@@ -125,7 +141,7 @@ $.ajax({
         let counter = 0 ;
         for (item in data) {
             if (data[item]['status'] == 'Submitted') {
-                makeElement(data[item]['id'] , data[item]['employee_name'] , data[item]['vacation_duration'] , counter) ;
+                makeElement(data[item]['id'] , data[item]['employee_name'] , data[item]['vacation_duration'] , counter , data[item]['employee-id']) ;
                 counter ++ ;
             }
         }

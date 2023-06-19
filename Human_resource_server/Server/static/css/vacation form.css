@@ -83,9 +83,9 @@ body {
     transition: 0.5s;
 }
 .static-btn {
-    cursor: pointer;
+    cursor: context-menu    ;
     left: 0;
-    background-color: #15632d ;
+    background-color: #0e471f ;
     font-size: 100%; 
     color : #ffffff ;
     border-radius: 10px ;
@@ -151,4 +151,12 @@ body {
     color :#10597b ;
     font-weight: bold;
     font-family: 'Raleway';
+}
+
+
+textarea:disabled {
+    background-color: white;
+}
+input:disabled {
+    background-color: white;
 }
